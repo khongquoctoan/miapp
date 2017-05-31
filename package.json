@@ -1,0 +1,25 @@
+{
+  "name": "contact-popup",
+  "version": "1.0.0",
+  "description": "MiApp Contact Popup v1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-sanitize": "^1.6.4",
+    "angular-ui-router": "^1.0.3",
+    "ng-tags-input": "^3.2.0",
+    "ngstorage": "^0.3.11",
+    "oclazyload": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "miapp",
+    "contact",
+    "popup"
+  ],
+  "author": "khongquoctoan.it@gmail.com",
+  "license": "ISC"
+}

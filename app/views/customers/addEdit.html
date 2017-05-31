@@ -1,0 +1,435 @@
+<div class="panel panel-default ng-scope">
+    <div class="panel-body">
+        <div class="invoice">
+            <div class="row">
+                <!-- Profile basic -->
+                <div class="col-md-9">
+                    <h4>Khong Quoc Toan
+                        <div class="panel-control pull-right"> 
+                            <a class="panelButton" style="color: inherit"><i class="fa fa-refresh"></i></a>
+                        </div>
+                    </h4>
+                    <div class="well" style="min-height: 290px;padding-bottom: 10px;margin-bottom: 0px"> 
+                        <div class="row clearfix">
+                            <form class="form-horizontal" style="margin: 0px">
+
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="form-group mi-form">
+                                            <div class="col-md-6">
+                                                <input ng-model="tab.customer.firstName" class="form-control" placeholder="Tên khách hàng">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input ng-model="tab.customer.lastName" class="form-control" placeholder="Họ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mi-form">
+                                            <div class="col-md-6">
+                                                <input ng-model="tab.customer.firstName" class="form-control" placeholder="Di động">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input ng-model="tab.customer.lastName" class="form-control" placeholder="Số máy bàn">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 pull-right text-center">
+                                        <img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar">
+                                    </div>
+                                </div>
+                                <div class="form-group mi-form">
+                                    <div class="col-md-10">
+                                        <input ng-model="tab.customer.tags" class="form-control" placeholder="Tags khách hàng">
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <button class="btn btn-primary btn-sm" ng-model="tab.customer.firstName">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row clearfix" style="display: none">
+                            <div class="col-md-9">
+                                <address> 
+                                    <strong class="text-dark">Mitek Company, Inc.</strong> 
+                                    <br> 
+                                    <abbr title="Phone">P:</abbr> 0933 961 912 - 08 1919 1919
+                                    <br> 
+                                    <strong class="text-dark">E-mail:</strong> 
+                                    <a href="mailto:#"> info@customer.com </a> 
+                                </address> 
+                                <address> 
+                                    <strong class="text-dark">Tags: </strong> VIP, San pham 1
+                                </address> 
+                            </div>
+                            <div class="col-md-3 pull-right text-right">
+                                <img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar">
+                            </div>
+                        </div>
+                        <hr style="margin: 0px 0px 12px 0px"/>
+                        <div class="row clearfix">
+                            <form class="form-horizontal" style="margin: 0px">
+                                <div class="form-group mi-form">
+                                    <div class="col-md-12">
+                                        <input ng-model="tab.note.tags" class="form-control" placeholder="Tags nội dung">
+                                    </div>
+                                </div>
+                                <div class="form-group mi-form">
+                                    <div class="col-md-12">
+                                        <textarea ng-model="tab.note.content" class="form-control" rows="3" placeholder="Nội dung tiếp nhận ..."></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Profile basic -->
+
+                <div class="col-md-3 pull-right" style="padding-top:40px">
+                    <!-- mobile phone ---- -->
+                    <div class="widget widget-shadow text-center" style="border: 1px solid #eee;padding: 5px;">
+                        <div class="widget-header clearfix" style="padding:22px 15px">
+                            <div class="input-group" style="margin-bottom: 10px;">
+                                <input type="text" class="form-control input-sm input-num" ng-model="vm.keypad.number" placeholder="Enter phone number" name="mobile" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                <span class="input-group-btn">
+                                    <button style="padding: 8px 10px;" type="button" ng-disabled="!vm.keypad.number || vm.keypad.number.length < 3 || vm.keypad.number.length > 12" class="btn btn-sm btn-info" ng-click="vm.keypad.number = ''"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </span>
+                            </div>
+                            <div class="keyboard">
+                                <div class="col-xs-4">
+                                    <div class="num-left num" data="1" ng-click="vm.keypad.number = vm.keypad.number + '1'">1</div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-mid num" data="2" ng-click="vm.keypad.number = vm.keypad.number + '2'">2<small>ABC</small></div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-right num" data="3" ng-click="vm.keypad.number = vm.keypad.number + '3'">3<small>DEF</small></div>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <div class="num-left num" data="4" ng-click="vm.keypad.number = vm.keypad.number + '4'">4<small>GHI</small></div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-mid num" data="5" ng-click="vm.keypad.number = vm.keypad.number + '5'">5<small>JKL</small></div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-right num" data="6" ng-click="vm.keypad.number = vm.keypad.number + '6'">6<small>MNO</small></div>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <div class="num-left num" data="7" ng-click="vm.keypad.number = vm.keypad.number + '7'">7<small>PQRS</small></div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-mid num" data="8" ng-click="vm.keypad.number = vm.keypad.number + '8'">8<small>TUV</small></div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-right num" data="9" ng-click="vm.keypad.number = vm.keypad.number + '9'">9<small>WXYZ</small></div>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <div class="num-left num" data="*" ng-click="vm.keypad.number = vm.keypad.number + '*'">*</div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-mid num" data="0" ng-click="vm.keypad.number = vm.keypad.number + '0'">0<small>+</small></div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="num-right num" data="#" ng-click="vm.keypad.number = vm.keypad.number + '#'">#</div>
+                                </div>
+
+                                <button class="btn btn-success col-md-12"><i class="fa fa-phone"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-shadow text-center" style="display: none">
+                        <div class="widget-header" style="padding-bottom: 20px">
+                            <div class="widget-header-content" style="border: 1px solid #eee;padding: 10px 5px 5px 5px;">
+
+                                <div class="clearfix">
+                                    <p class="bold" style="padding: 12px;">Incoming call...</p>                                
+                                    <hr style="margin: 12px 0px;"/>
+                                    <!--<p class="bold">00:10:00</p>-->                                
+                                    <div class="col-md-3 text-left bold">From:</div>
+                                    <div class="col-md-9 text-center">0909 999 999</div>
+                                    <div class="col-md-3 text-left bold">To</div>
+                                    <div class="col-md-9 text-center">01255 175 226</div>
+                                </div>
+                                <hr style="margin: 18px 0px;"/>
+                                <div class="clearfix">
+                                    <div class="btn-group btn-group-justified margin-bottom-10">
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #d2d2d2;">
+                                                Mute
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #d2d2d2;border-left:0px">
+                                                Hold
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-group btn-group-justified margin-bottom-10">
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #d2d2d2;border-right:0px">
+                                                <!--<i class="icon wb-star" aria-hidden="true"></i>-->
+                                                <!--<span class="text-uppercase hidden-xs">Transfer</span>-->
+                                                Transfer
+                                            </button>
+                                        </div>
+
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #d2d2d2;">
+                                                Add Guest
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default btn-sm" style="border: 1px solid #d2d2d2;border-left:0px">
+                                                Keypad
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-danger col-md-12 margin-bottom-10">End call</button>
+                                </div>
+
+
+                                <!--                            <div class="row" style="margin: 0px">
+                                                                <a href="javascript:void(0)" class="btn pull-left btn-primary col-sm-5">Accept</a>
+                                                                <a href="javascript:void(0)" class="btn pull-right btn-danger col-sm-5">Reject</a>
+                                                            </div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- mobile phone ---- -->
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                    <li role="presentation" ng-class="inTabActive == 'note' || !inTabActive ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'note'" aria-controls="home" role="tab" data-toggle="tab">Thông tin tiếp nhận</a></li>
+                    <li role="presentation" ng-class="inTabActive == 'history' ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'history'" aria-controls="history" role="tab" data-toggle="tab">Lịch sử cuộc gọi</a></li>
+                    <li role="presentation" ng-class="inTabActive == 'profile' ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'profile'" aria-controls="profile" role="tab" data-toggle="tab">Thông tin cá nhân</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" ng-class="inTabActive == 'note' || !inTabActive ? 'active' : ''">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th> # </th>
+                                            <th> Item </th>
+                                            <th class="hidden-480"> Description </th>
+                                            <th class="hidden-480"> Quantity </th>
+                                            <th class="hidden-480"> Unit Cost </th>
+                                            <th> Total </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> 1 </td>
+                                            <td> Lorem </td>
+                                            <td class="hidden-480"> Drem psum dolor </td>
+                                            <td class="hidden-480"> 12 </td>
+                                            <td class="hidden-480"> $35 </td>
+                                            <td> $1152 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" ng-class="inTabActive == 'history' ? 'active' : ''">
+                        Lịch sử cuộc gọi
+                    </div>
+                    <div role="tabpanel" class="tab-pane" ng-class="inTabActive == 'profile' ? 'active' : ''">
+                        Thông tin cá nhân
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div>
+    <table style="border: 1px solid #000;width: 300px">
+        <tr>
+            <th><label>Tieu de</label></th>
+            <th><input ng-model="tab.subject" /></th>
+        </tr>
+        <tr>
+            <td colspan="2"><button ng-click="submitDataTab(tab)">Submit {{tab.index}}</button></td>
+        </tr>
+    </table>
+    
+    
+    
+</div>-->
+<style>
+    /*Keypad*/
+    .input-num{
+        letter-spacing: 1px;
+        border-right: 0;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: right;
+        background-color: #fff !important;
+        cursor: auto !important;
+    }
+    .input-num:focus{
+
+    }
+    .del-num{
+        border-left: 0;
+        padding: 6px 5px;
+    }
+    .del-num i{
+        cursor: pointer;
+    }
+    .del-num i:hover{
+        color: red;
+    }
+    .keyboard .col-xs-4{
+        text-align: center;
+        /*border: 1px solid black;*/
+        font-weight: bold;
+        padding: 0;
+    }
+    .keyboard .num:hover{
+        background: #999595;
+        box-shadow: 1px 1px 1px grey;
+    }
+    .keyboard small{
+        font-size: 8px;
+        margin-left: 3px;
+    }
+    .num-left{
+        cursor: pointer;
+        background: #D5D5D5;
+        width: 90%;
+        padding: 5px;
+        font-size: 15px;
+        margin-bottom: 10px;
+        /*font-weight: 900;*/
+    }
+    .num-mid{
+        cursor: pointer;
+        background: #D5D5D5;
+        width: 90%;
+        margin: 0 auto;
+        padding: 5px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .num-right{
+        cursor: pointer;
+        background: #D5D5D5;
+        width: 90%;
+        margin-left: 10%;
+        padding: 5px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .call,.hangup{
+        padding: 3px;
+        cursor: pointer;
+        font-weight: bold
+    }
+    /*End Keypad*/
+    .margin-bottom-10{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+    .mi-form{
+        margin-bottom: 10px;
+    }
+
+    .nav-tabs-line>li>a {
+        padding: 10px 20px;
+        border: 0px;
+        border-radius: 0px;
+        border-bottom: 2px solid transparent
+    }
+
+    .nav-tabs-line>li>a:focus,.nav-tabs-line>li>a:hover {
+        background-color: transparent;
+        background: #afd4ea!important;
+        color: #fff!important;
+    }
+
+    .nav-tabs-line>li>a:hover {
+        border-bottom-color: #ccd5db
+    }
+
+    .nav-tabs-line>li.active>a,.nav-tabs-line>li.active>a:focus,.nav-tabs-line>li.active>a:hover {
+        color: #62a8ea;
+        background-color: transparent;
+        border: 0px;
+        border-radius: 0px;
+        border-bottom: 2px solid #62a8ea
+    }
+
+    .nav-tabs-line .open>a,.nav-tabs-line .open>a:focus,.nav-tabs-line .open>a:hover {
+        border-color: transparent;
+        border-bottom-color: #ccd5db
+    }
+
+    .nav-tabs-line.nav-tabs-bottom>li>a {
+        border-top: 2px solid transparent;
+        border-bottom: none
+    }
+
+    .nav-tabs-line.nav-tabs-bottom>li>a:hover {
+        border-top-color: #ccd5db;
+        border-bottom-color: transparent
+    }
+
+    .nav-tabs-line.nav-tabs-bottom>li.active>a,.nav-tabs-line.nav-tabs-bottom>li.active>a:focus,.nav-tabs-line.nav-tabs-bottom>li.active>a:hover {
+        border-top: 2px solid #62a8ea;
+        border-bottom: none
+    }
+
+    .nav-tabs-line.nav-justified>li>a {
+        border-bottom: 2px solid #e4eaec
+    }
+
+    .nav-tabs-line.nav-justified>li>a:hover {
+        border-bottom-color: #ccd5db
+    }
+
+    .nav-tabs-line.nav-justified>li.active>a,.nav-tabs-line.nav-justified>li.active>a:focus,.nav-tabs-line.nav-justified>li.active>a:hover {
+        border-color: transparent;
+        border-bottom: 2px solid #62a8ea
+    }
+
+    .nav-tabs-line.nav-justified.nav-tabs-bottom {
+        border-top: none
+    }
+
+    .nav-tabs-line.nav-justified.nav-tabs-bottom>li>a {
+        border-top: 2px solid #e4eaec;
+        border-bottom: none
+    }
+
+    .nav-tabs-line.nav-justified.nav-tabs-bottom>li>a:hover {
+        border-top-color: #ccd5db
+    }
+
+    .nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a,.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a:focus,.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a:hover {
+        border-top-color: #62a8ea;
+        border-bottom: none
+    }
+
+</style>
+

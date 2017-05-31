@@ -1,0 +1,103 @@
+<nav class="navbar topnav-navbar navbar-fixed-top" role="navigation">
+    <div class="navbar-header text-center"> <button type="button" class="navbar-toggle" ng-click="showMenu();"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" ui-sref="home" href="#/dashboard/home">Contact Popup</a> </div>
+    <div class="collapse navbar-collapse">
+        <form class="navbar-form navbar-left ng-pristine ng-valid" role="search"> <span class="glyphicon glyphicon-search"></span>
+            <div class="form-group"> <input type="text" class="form-control"> </div>
+        </form>
+        <ul class="nav navbar-nav">
+            <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-envelope"></span><span class="badge badge-green">5</span></a>
+                <ul class="dropdown-menu animated fadeIn">
+                    <li class="messages-top text-center ng-binding"> You have 4 unread messages. </li>
+                    <li class="dropdown-messages">
+                        <a href="#">
+                            <div class="message-sender ng-binding"> Lucy Chandler </div>
+                            <div class="message-header ng-binding"> Sent you a friend request. </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-messages">
+                        <a href="#">
+                            <div class="message-sender ng-binding"> Diptesh Mishra </div>
+                            <div class="message-header ng-binding"> Asked you to join StrapUI. </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-messages">
+                        <a href="#">
+                            <div class="message-sender ng-binding"> Wang Xiao </div>
+                            <div class="message-header ng-binding"> Congratulations! your account is activated. </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-messages">
+                        <a href="#">
+                            <div class="message-sender ng-binding"> Jade Mullick </div>
+                            <div class="message-header ng-binding"> Let's have a meeting at 5:00pm. </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown" dropdown="" on-toggle="toggled(open)"> 
+                <a class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><span class="badge badge-red">13</span></a>
+                <ul class="dropdown-menu animated fadeIn">
+                    <li class="notification-header text-center ng-binding"> You have 3 new notifications. </li>
+                    <li class="dropdown-notifications">
+                        <a href="#">
+                            <div class="notification ng-binding"> <i class="fa fa-thumbs-up"></i> Runuma Das liked your photo. </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-notifications">
+                        <a href="#">
+                            <div class="notification ng-binding"> <i class="fa fa-thumbs-up"></i>Harshita Borah liked your status. </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-notifications">
+                        <a href="#">
+                            <div class="notification ng-binding"> <i class="fa fa-user-plus"></i>Archana wants to be friends. </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-notifications">
+                        <a href="#">
+                            <div class="notification ng-binding"> <i class="fa fa-user-times"></i>Animesh Saha unfriended you. </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+<!--            <li class="dropdown" > 
+                <a href="javascript:void(0)" ng-click="addTab()">Add Tabs</a>
+            </li>-->
+            <li ng-repeat="tab in appTabs" ng-class="tab.active?'active':''"><a href="javascript:void(0)" ng-click="selectTab(tab.index)"> {{tab.title}}</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right navbar-right">
+            <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle notoggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"> <span class="ng-binding">Language</span> </a>
+                <ul class="dropdown-menu lang pull-right animated fadeIn">
+                    <li><a ng-click="changeLanguage('en')">English</a></li>
+                    <li><a ng-click="changeLanguage('de')">Dutch</a></li>
+                    <li><a ng-click="changeLanguage('ur')">اردو</a></li>
+                    <li><a ng-click="changeLanguage('hn')">हिन्दी</a></li>
+                </ul>
+            </li>
+            <li class="dropdown admin-dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><img src="public/images/flat-avatar.png" class="topnav-img"> <span class="hidden-sm">Ani Pascal</span></a>
+                <ul class="dropdown-menu pull-right animated fadeIn">
+                    <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile">Profile</a></li>
+                    <li><a ui-sref="login" class="ng-binding" href="#/login">Logout</a></li>
+                </ul>
+            </li>
+        </ul> 
+    </div>
+    <ul class="nav navbar-nav pull-right hidd">
+        <li class="dropdown admin-dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle animated fadeIn" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><img src="public/images/flat-avatar.png" class="topnav-img"></a>
+            <ul class="dropdown-menu pull-right">
+                <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile">Profile</a></li>
+                <li><a ui-sref="login" class="ng-binding" href="#/login">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!--<div>This is header</div>
+<ul>
+    <li><a href="#">Hello</a></li>
+    <li><a href="#!/index?module=dashboard">Dashboard</a></li>
+    <li><a href="#!/index?module=customers">Customers</a></li>   
+    <li><a href="#!/index?module=customers&action=add">Add Customer</a></li>   
+</ul>-->
+
+

@@ -1,0 +1,439 @@
+<aside id="sidebar">
+    <div class="sidenav-outer ps-container">
+        <div class="side-menu">
+            <div class="menu-body">
+                <ul class="nav nav-pills nav-stacked sidenav">
+                    <li ng-class="appModule=='dashboard'?'active':''"> <a href="#!/index?module=dashboard"> <span class="glyphicon glyphicon-home"></span> </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li><a ng-class="" href="#!/dashboard/home">Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="appModule=='customers'?'active':''"> <a href="#!/index?module=customers"> <span class="glyphicon glyphicon-user"></span> </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li><a ng-class="" href="#!/index?module=dashboard">Customers</a></li>
+                        </ul>
+                    </li>
+                    <li> <a href="javascript:void(0)" ng-click="addTabs()"> <span class="glyphicon glyphicon-user"></span> </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li><a ng-class="" href="javascript:void(0)">Add Tabs</a></li>
+                        </ul>
+                    </li>
+                    <li> <a ui-sref="elements" href="#/dashboard/form/elements"> <span class="glyphicon glyphicon-equalizer"></span> </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li class="sidemenu-header ng-binding">Form</li>
+                            <li><a ng-class="{active: $state.includes('form')}" ui-sref="elements" href="#/dashboard/form/elements">Form Elements</a></li>
+                            <li><a ng-class="{active: $state.includes('form')}" ui-sref="components" href="#/dashboard/form/components">Form Components</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="side-widgets">
+            <div class="widgets-content">
+                <div class="text-center"> <a ui-sref="profile" href="#/dashboard/profile"><img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar"></a>
+                    <div class="text-center avatar-name">Ani Pascal </div>
+                </div>
+                <!--<div class="calendar-container text-center">-->
+<!--                    <div ui-calendar="" ng-model="eventSources" class="ng-pristine ng-untouched ng-valid ng-isolate-scope fc fc-ltr">
+                        <table class="fc-header" style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <td class="fc-header-left"><span class="fc-header-title"><h2>May 2017</h2></span></td>
+                                    <td class="fc-header-center"></td>
+                                    <td class="fc-header-right"><span class="fc-button fc-button-today fc-state-default fc-corner-left fc-corner-right fc-state-disabled" unselectable="on">today</span><span class="fc-header-space"></span><span class="fc-button fc-button-prev fc-state-default fc-corner-left" unselectable="on"><span class="fc-text-arrow">‹</span></span><span class="fc-button fc-button-next fc-state-default fc-corner-right" unselectable="on"><span class="fc-text-arrow">›</span></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="fc-content" style="position: relative;">
+                            <div class="fc-view fc-view-month fc-grid" style="position:relative" unselectable="on">
+                                <div class="fc-event-container" style="position:absolute;z-index:8;top:0;left:0"></div>
+                                <table class="fc-border-separate" style="width:100%" cellspacing="0">
+                                    <thead>
+                                        <tr class="fc-first fc-last">
+                                            <th class="fc-day-header fc-sun fc-widget-header fc-first" style="width: 23px;">Sun</th>
+                                            <th class="fc-day-header fc-mon fc-widget-header" style="width: 23px;">Mon</th>
+                                            <th class="fc-day-header fc-tue fc-widget-header" style="width: 23px;">Tue</th>
+                                            <th class="fc-day-header fc-wed fc-widget-header" style="width: 23px;">Wed</th>
+                                            <th class="fc-day-header fc-thu fc-widget-header" style="width: 23px;">Thu</th>
+                                            <th class="fc-day-header fc-fri fc-widget-header" style="width: 23px;">Fri</th>
+                                            <th class="fc-day-header fc-sat fc-widget-header fc-last">Sat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="fc-week fc-first">
+                                            <td class="fc-day fc-sun fc-widget-content fc-other-month fc-past fc-first" data-date="2017-04-30">
+                                                <div style="min-height: 18px;">
+                                                    <div class="fc-day-number">30</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-mon fc-widget-content fc-past" data-date="2017-05-01">
+                                                <div>
+                                                    <div class="fc-day-number">1</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-tue fc-widget-content fc-past" data-date="2017-05-02">
+                                                <div>
+                                                    <div class="fc-day-number">2</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-wed fc-widget-content fc-past" data-date="2017-05-03">
+                                                <div>
+                                                    <div class="fc-day-number">3</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-thu fc-widget-content fc-past" data-date="2017-05-04">
+                                                <div>
+                                                    <div class="fc-day-number">4</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-fri fc-widget-content fc-past" data-date="2017-05-05">
+                                                <div>
+                                                    <div class="fc-day-number">5</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-sat fc-widget-content fc-past fc-last" data-date="2017-05-06">
+                                                <div>
+                                                    <div class="fc-day-number">6</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fc-week">
+                                            <td class="fc-day fc-sun fc-widget-content fc-past fc-first" data-date="2017-05-07">
+                                                <div style="min-height: 18px;">
+                                                    <div class="fc-day-number">7</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-mon fc-widget-content fc-past" data-date="2017-05-08">
+                                                <div>
+                                                    <div class="fc-day-number">8</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-tue fc-widget-content fc-past" data-date="2017-05-09">
+                                                <div>
+                                                    <div class="fc-day-number">9</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-wed fc-widget-content fc-past" data-date="2017-05-10">
+                                                <div>
+                                                    <div class="fc-day-number">10</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-thu fc-widget-content fc-past" data-date="2017-05-11">
+                                                <div>
+                                                    <div class="fc-day-number">11</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-fri fc-widget-content fc-past" data-date="2017-05-12">
+                                                <div>
+                                                    <div class="fc-day-number">12</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-sat fc-widget-content fc-past fc-last" data-date="2017-05-13">
+                                                <div>
+                                                    <div class="fc-day-number">13</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fc-week">
+                                            <td class="fc-day fc-sun fc-widget-content fc-past fc-first" data-date="2017-05-14">
+                                                <div style="min-height: 18px;">
+                                                    <div class="fc-day-number">14</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-mon fc-widget-content fc-past" data-date="2017-05-15">
+                                                <div>
+                                                    <div class="fc-day-number">15</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-tue fc-widget-content fc-past" data-date="2017-05-16">
+                                                <div>
+                                                    <div class="fc-day-number">16</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-wed fc-widget-content fc-past" data-date="2017-05-17">
+                                                <div>
+                                                    <div class="fc-day-number">17</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-thu fc-widget-content fc-past" data-date="2017-05-18">
+                                                <div>
+                                                    <div class="fc-day-number">18</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-fri fc-widget-content fc-past" data-date="2017-05-19">
+                                                <div>
+                                                    <div class="fc-day-number">19</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-sat fc-widget-content fc-past fc-last" data-date="2017-05-20">
+                                                <div>
+                                                    <div class="fc-day-number">20</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fc-week">
+                                            <td class="fc-day fc-sun fc-widget-content fc-past fc-first" data-date="2017-05-21">
+                                                <div style="min-height: 18px;">
+                                                    <div class="fc-day-number">21</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-mon fc-widget-content fc-past" data-date="2017-05-22">
+                                                <div>
+                                                    <div class="fc-day-number">22</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-tue fc-widget-content fc-past" data-date="2017-05-23">
+                                                <div>
+                                                    <div class="fc-day-number">23</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-wed fc-widget-content fc-past" data-date="2017-05-24">
+                                                <div>
+                                                    <div class="fc-day-number">24</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-thu fc-widget-content fc-past" data-date="2017-05-25">
+                                                <div>
+                                                    <div class="fc-day-number">25</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-fri fc-widget-content fc-past" data-date="2017-05-26">
+                                                <div>
+                                                    <div class="fc-day-number">26</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-sat fc-widget-content fc-past fc-last" data-date="2017-05-27">
+                                                <div>
+                                                    <div class="fc-day-number">27</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fc-week">
+                                            <td class="fc-day fc-sun fc-widget-content fc-past fc-first" data-date="2017-05-28">
+                                                <div style="min-height: 18px;">
+                                                    <div class="fc-day-number">28</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-mon fc-widget-content fc-past" data-date="2017-05-29">
+                                                <div>
+                                                    <div class="fc-day-number">29</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-tue fc-widget-content fc-past" data-date="2017-05-30">
+                                                <div>
+                                                    <div class="fc-day-number">30</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-wed fc-widget-content fc-today fc-state-highlight" data-date="2017-05-31">
+                                                <div>
+                                                    <div class="fc-day-number">31</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-thu fc-widget-content fc-other-month fc-future" data-date="2017-06-01">
+                                                <div>
+                                                    <div class="fc-day-number">1</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-fri fc-widget-content fc-other-month fc-future" data-date="2017-06-02">
+                                                <div>
+                                                    <div class="fc-day-number">2</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-sat fc-widget-content fc-other-month fc-future fc-last" data-date="2017-06-03">
+                                                <div>
+                                                    <div class="fc-day-number">3</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="fc-week fc-last">
+                                            <td class="fc-day fc-sun fc-widget-content fc-other-month fc-future fc-first" data-date="2017-06-04">
+                                                <div style="min-height: 19px;">
+                                                    <div class="fc-day-number">4</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-mon fc-widget-content fc-other-month fc-future" data-date="2017-06-05">
+                                                <div>
+                                                    <div class="fc-day-number">5</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-tue fc-widget-content fc-other-month fc-future" data-date="2017-06-06">
+                                                <div>
+                                                    <div class="fc-day-number">6</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-wed fc-widget-content fc-other-month fc-future" data-date="2017-06-07">
+                                                <div>
+                                                    <div class="fc-day-number">7</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-thu fc-widget-content fc-other-month fc-future" data-date="2017-06-08">
+                                                <div>
+                                                    <div class="fc-day-number">8</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-fri fc-widget-content fc-other-month fc-future" data-date="2017-06-09">
+                                                <div>
+                                                    <div class="fc-day-number">9</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="fc-day fc-sat fc-widget-content fc-other-month fc-future fc-last" data-date="2017-06-10">
+                                                <div>
+                                                    <div class="fc-day-number">10</div>
+                                                    <div class="fc-day-content">
+                                                        <div style="position: relative; height: 0px;">&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>-->
+                <!--</div>-->
+                <div class="news-feed">
+                    <div class="feed-header ng-binding">NEWS FEED</div>
+                    <div class="feed-content">
+                        <ul class="feed">
+                            <li> <a>Anna liked StrapUI - Dashboard Themes &amp; Templates.</a> <span class="feed-date">25/4/2015</span> </li>
+                            <li> <a>Henna birthday at Mezbaan at 7:00pm.</a> <span class="feed-date">25/4/2015</span> </li>
+                            <li> <a>Animesh Saha commented on your post.</a> <span class="feed-date">25/4/2015</span> </li>
+                            <li> <a>Server Alert: Need to upgrade your server.</a> <span class="feed-date">25/4/2015</span> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
+            <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
+        </div>
+        <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
+            <div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div>
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,15 @@
+<div ui-view="header"></div>
+<section class="dashboard-page ng-scope">
+    <div ui-view="sidebar"></div>
+    <!-- uiView:  -->
+    <section id="body-container">
+        <section ng-show="appModule == 'dashboard'" ng-controller="dashboardController" ng-include="'app/views/dashboard/dashboard.html'">...</section>
+        <!--<section ng-show="appModule == 'customers'" ng-controller="customerController" ng-include="'app/views/customers/customers.html'">...</section>-->
+        <div class="conter-wrapper" ng-show="appModule == 'customers'" ng-controller="customerController" ng-include="'app/views/customers/customers.html'">...</div>
+        <section ng-show="appModule == 'customer' && appAction" ng-controller="customerActionController" ng-include="'app/views/customers/customerAction.html'">...</section>
+
+    </section>
+</section>
+
+
+<!--<div ui-view="footer"></div>-->
