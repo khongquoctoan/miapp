@@ -1,9 +1,4 @@
-<!--<a href="javascript:void(0)" ng-click="addTab()">Add Tabs</a>
-<ul>
-    <li ng-repeat="tab in appTabs"><a href="javascript:void(0)" ng-click="selectTab(tab.index)"> {{tab.title}}</a></li>
-</ul>-->
-
-<div ng-repeat="tab in appTabs" ng-show="isSelectedTab(tab.index)" ng-include="'app/views/customers/addEdit.html'">
+<div ng-repeat="tab in appTabs" ng-show="tab.active" ng-include="'app/views/customers/addEdit.html'">
     
 </div>
 

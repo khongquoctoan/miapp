@@ -1,11 +1,23 @@
 <nav class="navbar topnav-navbar navbar-fixed-top" role="navigation">
-    <div class="navbar-header text-center"> <button type="button" class="navbar-toggle" ng-click="showMenu();"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" ui-sref="home" href="#/dashboard/home">Contact Popup</a> </div>
+    <div class="navbar-header text-center"> 
+        <button type="button" class="navbar-toggle" ng-click="showMenu();"> 
+            <span class="sr-only">Toggle navigation</span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+        </button> 
+        <a class="navbar-brand" href="#!/index?module=dashboard">Contact Popup</a> 
+    </div>
     <div class="collapse navbar-collapse">
         <form class="navbar-form navbar-left ng-pristine ng-valid" role="search"> <span class="glyphicon glyphicon-search"></span>
             <div class="form-group"> <input type="text" class="form-control"> </div>
         </form>
         <ul class="nav navbar-nav">
-            <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-envelope"></span><span class="badge badge-green">5</span></a>
+            <li class="dropdown"> 
+                <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    <span class="badge badge-green">5</span>
+                </a>
                 <ul class="dropdown-menu animated fadeIn">
                     <li class="messages-top text-center ng-binding"> You have 4 unread messages. </li>
                     <li class="dropdown-messages">
@@ -34,8 +46,11 @@
                     </li>
                 </ul>
             </li>
-            <li class="dropdown" dropdown="" on-toggle="toggled(open)"> 
-                <a class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span><span class="badge badge-red">13</span></a>
+            <li class="dropdown"> 
+                <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-bell"></span>
+                    <span class="badge badge-red">13</span>
+                </a>
                 <ul class="dropdown-menu animated fadeIn">
                     <li class="notification-header text-center ng-binding"> You have 3 new notifications. </li>
                     <li class="dropdown-notifications">
@@ -60,21 +75,27 @@
                     </li>
                 </ul>
             </li>
-<!--            <li class="dropdown" > 
-                <a href="javascript:void(0)" ng-click="addTab()">Add Tabs</a>
-            </li>-->
-            <li ng-repeat="tab in appTabs" ng-class="tab.active?'active':''"><a href="javascript:void(0)" ng-click="selectTab(tab.index)"> {{tab.title}}</a></li>
+            <li ng-repeat="tab in appTabs" class="mitabs" ng-class="tab.active && appPModule=='customer'?'active':''">
+                <a href="javascript:void(0)" ng-click="showTabCustomer(tab.params.action, tab.index, tab.type)"> 
+                    <i class="fa fa-user-circle"></i> {{tab.title}}
+                </a>
+            </li>
         </ul>
         <ul class="nav navbar-nav pull-right navbar-right">
-            <li class="dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle notoggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"> <span class="ng-binding">Language</span> </a>
+            <li class="dropdown"> 
+                <a class="dropdown-toggle notoggle" aria-haspopup="true" aria-expanded="false"> 
+                    <span class="ng-binding">Language</span> 
+                </a>
                 <ul class="dropdown-menu lang pull-right animated fadeIn">
+                    <li><a ng-click="changeLanguage('vn')">Tiếng Việt</a></li>
                     <li><a ng-click="changeLanguage('en')">English</a></li>
-                    <li><a ng-click="changeLanguage('de')">Dutch</a></li>
-                    <li><a ng-click="changeLanguage('ur')">اردو</a></li>
-                    <li><a ng-click="changeLanguage('hn')">हिन्दी</a></li>
                 </ul>
             </li>
-            <li class="dropdown admin-dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><img src="public/images/flat-avatar.png" class="topnav-img"> <span class="hidden-sm">Ani Pascal</span></a>
+            <li class="dropdown admin-dropdown"> 
+                <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <img src="public/images/flat-avatar.png" class="topnav-img"> 
+                    <span class="hidden-sm">Khong Quoc Toan</span>
+                </a>
                 <ul class="dropdown-menu pull-right animated fadeIn">
                     <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile">Profile</a></li>
                     <li><a ui-sref="login" class="ng-binding" href="#/login">Logout</a></li>
@@ -83,7 +104,7 @@
         </ul> 
     </div>
     <ul class="nav navbar-nav pull-right hidd">
-        <li class="dropdown admin-dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle animated fadeIn" dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><img src="public/images/flat-avatar.png" class="topnav-img"></a>
+        <li class="dropdown admin-dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle animated fadeIn" aria-haspopup="true" aria-expanded="false"><img src="public/images/flat-avatar.png" class="topnav-img"></a>
             <ul class="dropdown-menu pull-right">
                 <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile">Profile</a></li>
                 <li><a ui-sref="login" class="ng-binding" href="#/login">Logout</a></li>

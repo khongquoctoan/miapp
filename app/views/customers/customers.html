@@ -8,7 +8,7 @@
             </div>
             <div class="panel-body">
                 <p>
-                    <a href="javascript:void(0)" ng-click="addTabs()" class="btn btn-default"><i class="fa fa-plus"></i></a> 
+                    <a href="javascript:void(0)" ng-click="showTabCustomer('new', 0, 'info')" class="btn btn-default"><i class="fa fa-plus"></i></a> 
                     <button type="button" class="btn btn-info"><i class="fa fa-upload"></i></button> 
                     <button type="button" class="btn btn-warning"><i class="fa fa-download"></i></button> 
                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>John</td>
+                            <td ng-click="showTabCustomer('info', '2', 'info')">John</td>
                             <td>john@gmail.com</td>
                             <td>London, UK</td>
                         </tr>

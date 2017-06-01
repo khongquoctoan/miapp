@@ -3,17 +3,17 @@
         <div class="side-menu">
             <div class="menu-body">
                 <ul class="nav nav-pills nav-stacked sidenav">
-                    <li ng-class="appModule=='dashboard'?'active':''"> <a href="#!/index?module=dashboard"> <span class="glyphicon glyphicon-home"></span> </a>
+                    <li ng-class="appPModule=='dashboard'?'active':''"> <a href="#!/index?module=dashboard"> <span class="glyphicon glyphicon-home"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/dashboard/home">Dashboard</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appModule=='customers'?'active':''"> <a href="#!/index?module=customers"> <span class="glyphicon glyphicon-user"></span> </a>
+                    <li ng-class="appPModule=='customers'?'active':''"> <a href="#!/index?module=customers"> <span class="glyphicon glyphicon-user"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=dashboard">Customers</a></li>
                         </ul>
                     </li>
-                    <li> <a href="javascript:void(0)" ng-click="addTabs()"> <span class="glyphicon glyphicon-user"></span> </a>
+                    <li> <a href="javascript:void(0)" ng-click="showTabCustomer('new', 0, '')"> <span class="glyphicon glyphicon-user"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="javascript:void(0)">Add Tabs</a></li>
                         </ul>
@@ -32,7 +32,7 @@
         <div class="side-widgets">
             <div class="widgets-content">
                 <div class="text-center"> <a ui-sref="profile" href="#/dashboard/profile"><img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar"></a>
-                    <div class="text-center avatar-name">Ani Pascal </div>
+                    <div class="text-center avatar-name">Khong Quoc Toan</div>
                 </div>
                 <!--<div class="calendar-container text-center">-->
 <!--                    <div ui-calendar="" ng-model="eventSources" class="ng-pristine ng-untouched ng-valid ng-isolate-scope fc fc-ltr">

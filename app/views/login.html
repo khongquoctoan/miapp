@@ -1,1 +1,152 @@
-<div>Login page</div>
+<div class=login-page>
+    <div class=row>
+        <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
+            <img src=public/images/flat-avatar.png class=user-avatar>
+            <h1>Contact Popup </h1>
+            <form role=form>
+                <div class=form-content>
+                    <div class=form-group> 
+                        <input type=text ng-model=name class="form-control input-underline input-lg" placeholder="Email"> 
+                    </div>
+                    <div class=form-group> 
+                        <input type=password class="form-control input-underline input-lg" placeholder="Password"> 
+                    </div>
+                </div> 
+                <button ng-click=submit() class="btn btn-white btn-outline btn-lg btn-rounded progress-login" progress-button=authenticate()>Đăng nhập</button> &nbsp; 
+                <a ui-sref=signup>
+                    <button type=submit class="btn btn-white btn-outline btn-lg btn-rounded">Đăng ký</button>
+                </a> 
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+.login-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    background: #3ca2e0;
+    text-align: center;
+    color: #fff;
+    padding: 3em
+}
+
+.login-page h1 {
+    font-weight: 300
+}
+
+.login-page h1 small {
+    color: rgba(255,255,255,.7)
+}
+
+.login-page .form-group {
+    padding: 8px 0
+}
+
+.login-page .form-content {
+    padding: 40px 0
+}
+.input-underline {
+    background: 0 0;
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid rgba(255,255,255,.4);
+    color: #FFF;
+    border-radius: 0
+}
+
+.input-underline::-moz-placeholder {
+    color: rgba(255,255,255,.7)
+}
+
+.input-underline:-ms-input-placeholder {
+    color: rgba(255,255,255,.7)
+}
+
+.input-underline::-webkit-input-placeholder {
+    color: rgba(255,255,255,.7)
+}
+
+.input-underline:focus {
+    border-bottom: 2px solid #fff;
+    box-shadow: none
+}
+
+.underline {
+    background: none!important;
+    background-image: none;
+    border: 1px solid #c8c7cc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0 0 0 0!important;
+    color: #5b5b60;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 5px 4px;
+    transition-duration: .1s;
+    box-shadow: none!important;
+    transition: border 300ms ease-out
+}
+
+.underline:focus {
+    border-color: #3ca2e0
+}
+
+.form-group-sm .form-control-static {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    min-height: 32px
+}
+
+.input-lg {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 0
+}
+
+select.input-lg {
+    height: 46px;
+    line-height: 46px
+}
+
+textarea.input-lg,select[multiple].input-lg {
+    height: auto
+}
+
+.form-group-lg .form-control {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 0
+}
+
+select.form-group-lg .form-control {
+    height: 46px;
+    line-height: 46px
+}
+
+textarea.form-group-lg .form-control,select[multiple].form-group-lg .form-control {
+    height: auto
+}
+
+.form-group-lg .form-control-static {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    min-height: 38px
+}
+
+</style>

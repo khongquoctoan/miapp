@@ -536,7 +536,13 @@ td,th {
     background: #3ca2e0;
     color: #ecf6fc
 }
-
+.topnav-navbar ul.navbar-nav li.mitabs.active a, .topnav-navbar ul.navbar-nav li.mitabs a{
+    padding: 13px;
+    font-size: 13px;
+}
+.topnav-navbar ul.navbar-nav li.mitabs.active i, .topnav-navbar ul.navbar-nav li i{
+    font-size: 14px;
+}
 .topnav-navbar ul.navbar-nav li a:focus .hidden-message,.topnav-navbar ul.navbar-nav li a:hover .hidden-message,.topnav-navbar ul.navbar-nav li a:active .hidden-message,.topnav-navbar ul.navbar-nav li a.active .hidden-message {
     display: inline-block
 }
@@ -2333,4 +2339,183 @@ textarea.form-control {
 
 input[type="search"] {
     -webkit-appearance: none
+}
+
+/*Keypad*/
+.input-num{
+    letter-spacing: 1px;
+    border-right: 0;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+    background-color: #fff !important;
+    cursor: auto !important;
+    height: 30px;
+}
+.input-num:focus{
+
+}
+.del-num{
+    border-left: 0;
+    padding: 6px 5px;
+}
+.del-num i{
+    cursor: pointer;
+}
+.del-num i:hover{
+    color: red;
+}
+.keyboard .col-xs-4{
+    text-align: center;
+    /*border: 1px solid black;*/
+    font-weight: bold;
+    padding: 0;
+}
+.keyboard .num:hover{
+    background: #999595;
+    box-shadow: 1px 1px 1px grey;
+}
+.keyboard small{
+    font-size: 8px;
+    margin-left: 3px;
+}
+.num-left{
+    cursor: pointer;
+    background: #D5D5D5;
+    width: 90%;
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    /*font-weight: 900;*/
+}
+.num-mid{
+    cursor: pointer;
+    background: #D5D5D5;
+    width: 90%;
+    margin: 0 auto;
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.num-right{
+    cursor: pointer;
+    background: #D5D5D5;
+    width: 90%;
+    margin-left: 10%;
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.call,.hangup{
+    padding: 3px;
+    cursor: pointer;
+    font-weight: bold
+}
+/*End Keypad*/
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+.mi-form{
+    margin-bottom: 10px;
+}
+
+.nav-tabs-line>li>a {
+    padding: 10px 20px;
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 2px solid transparent
+}
+
+.nav-tabs-line>li>a:focus,.nav-tabs-line>li>a:hover {
+    background-color: transparent;
+    background: #afd4ea!important;
+    color: #fff!important;
+}
+
+.nav-tabs-line>li>a:hover {
+    border-bottom-color: #ccd5db
+}
+
+.nav-tabs-line>li.active>a,.nav-tabs-line>li.active>a:focus,.nav-tabs-line>li.active>a:hover {
+    color: #62a8ea;
+    background-color: transparent;
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 2px solid #62a8ea
+}
+
+.nav-tabs-line .open>a,.nav-tabs-line .open>a:focus,.nav-tabs-line .open>a:hover {
+    border-color: transparent;
+    border-bottom-color: #ccd5db
+}
+
+.nav-tabs-line.nav-tabs-bottom>li>a {
+    border-top: 2px solid transparent;
+    border-bottom: none
+}
+
+.nav-tabs-line.nav-tabs-bottom>li>a:hover {
+    border-top-color: #ccd5db;
+    border-bottom-color: transparent
+}
+
+.nav-tabs-line.nav-tabs-bottom>li.active>a,.nav-tabs-line.nav-tabs-bottom>li.active>a:focus,.nav-tabs-line.nav-tabs-bottom>li.active>a:hover {
+    border-top: 2px solid #62a8ea;
+    border-bottom: none
+}
+
+.nav-tabs-line.nav-justified>li>a {
+    border-bottom: 2px solid #e4eaec
+}
+
+.nav-tabs-line.nav-justified>li>a:hover {
+    border-bottom-color: #ccd5db
+}
+
+.nav-tabs-line.nav-justified>li.active>a,.nav-tabs-line.nav-justified>li.active>a:focus,.nav-tabs-line.nav-justified>li.active>a:hover {
+    border-color: transparent;
+    border-bottom: 2px solid #62a8ea
+}
+
+.nav-tabs-line.nav-justified.nav-tabs-bottom {
+    border-top: none
+}
+
+.nav-tabs-line.nav-justified.nav-tabs-bottom>li>a {
+    border-top: 2px solid #e4eaec;
+    border-bottom: none
+}
+
+.nav-tabs-line.nav-justified.nav-tabs-bottom>li>a:hover {
+    border-top-color: #ccd5db
+}
+
+.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a,.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a:focus,.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a:hover {
+    border-top-color: #62a8ea;
+    border-bottom: none
+}
+
+.form-visible-input input{
+    border: none;
+    background: inherit;
+    box-shadow: none;
+    padding: 5px 10px;
+    height: 30px;
+}
+.form-visible-input input:focus{
+    border-color: inherit;
+    outline: 0;
+    box-shadow: none;
+}
+
+@charset "UTF-8";.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both
+}
+
+.bold{
+    font-weight: bold;
 }

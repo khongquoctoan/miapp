@@ -4,31 +4,31 @@
             <div class="row">
                 <!-- Profile basic -->
                 <div class="col-md-9">
-                    <h4>Khong Quoc Toan
+                    <h4 class="bold"><i class="fa fa-user-circle"></i> {{!tab.customer.lastName && !tab.customer.firstName ? 'Anonymous' : tab.customer.lastName+' '+tab.customer.firstName}} [{{'Tab: '+tab.index}}]
                         <div class="panel-control pull-right"> 
                             <a class="panelButton" style="color: inherit"><i class="fa fa-refresh"></i></a>
+                            <a class="panelButton" style="color: inherit" ng-click="removeTab($index)"><i class="fa fa-remove"></i></a>
                         </div>
                     </h4>
                     <div class="well" style="min-height: 290px;padding-bottom: 10px;margin-bottom: 0px"> 
                         <div class="row clearfix">
-                            <form class="form-horizontal" style="margin: 0px">
-
+                            <form class="form-horizontal form-visible-input" style="margin: 0px">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="form-group mi-form">
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.firstName" class="form-control" placeholder="Tên khách hàng">
+                                                <input ng-model="tab.customer.firstName" focus-me="true" class="form-control" placeholder="Nhập tên khách hàng">
                                             </div>
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.lastName" class="form-control" placeholder="Họ">
+                                                <input ng-model="tab.customer.lastName" class="form-control" placeholder="Nhập họ khách hàng">
                                             </div>
                                         </div>
                                         <div class="form-group mi-form">
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.firstName" class="form-control" placeholder="Di động">
+                                                <input ng-model="tab.customer.mobile" class="form-control" placeholder="Nhập số di động">
                                             </div>
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.lastName" class="form-control" placeholder="Số máy bàn">
+                                                <input ng-model="tab.customer.phone" class="form-control" placeholder="Nhập số máy bàn">
                                             </div>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                         <input ng-model="tab.customer.tags" class="form-control" placeholder="Tags khách hàng">
                                     </div>
                                     <div class="col-md-2 text-center">
-                                        <button class="btn btn-primary btn-sm" ng-model="tab.customer.firstName">Save</button>
+                                        <button class="btn btn-primary btn-sm" ng-model="tab.customer.firstName">Lưu</button>
                                     </div>
                                 </div>
                             </form>
@@ -60,8 +60,9 @@
                                     <strong class="text-dark">Tags: </strong> VIP, San pham 1
                                 </address> 
                             </div>
-                            <div class="col-md-3 pull-right text-right">
-                                <img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar">
+                            <div class="col-md-2 pull-right text-center">
+                                <img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar"><br/>
+                                <button class="btn btn-primary btn-sm" ng-model="tab.customer.firstName">Cập nhật</button>
                             </div>
                         </div>
                         <hr style="margin: 0px 0px 12px 0px"/>
@@ -255,7 +256,6 @@
                     </div>
                 </div>
 
-
             </div>
         </div>
     </div>
@@ -275,161 +275,4 @@
     
     
 </div>-->
-<style>
-    /*Keypad*/
-    .input-num{
-        letter-spacing: 1px;
-        border-right: 0;
-        font-size: 13px;
-        font-weight: bold;
-        text-align: right;
-        background-color: #fff !important;
-        cursor: auto !important;
-    }
-    .input-num:focus{
-
-    }
-    .del-num{
-        border-left: 0;
-        padding: 6px 5px;
-    }
-    .del-num i{
-        cursor: pointer;
-    }
-    .del-num i:hover{
-        color: red;
-    }
-    .keyboard .col-xs-4{
-        text-align: center;
-        /*border: 1px solid black;*/
-        font-weight: bold;
-        padding: 0;
-    }
-    .keyboard .num:hover{
-        background: #999595;
-        box-shadow: 1px 1px 1px grey;
-    }
-    .keyboard small{
-        font-size: 8px;
-        margin-left: 3px;
-    }
-    .num-left{
-        cursor: pointer;
-        background: #D5D5D5;
-        width: 90%;
-        padding: 5px;
-        font-size: 15px;
-        margin-bottom: 10px;
-        /*font-weight: 900;*/
-    }
-    .num-mid{
-        cursor: pointer;
-        background: #D5D5D5;
-        width: 90%;
-        margin: 0 auto;
-        padding: 5px;
-        font-size: 15px;
-        margin-bottom: 10px;
-    }
-    .num-right{
-        cursor: pointer;
-        background: #D5D5D5;
-        width: 90%;
-        margin-left: 10%;
-        padding: 5px;
-        font-size: 15px;
-        margin-bottom: 10px;
-    }
-    .call,.hangup{
-        padding: 3px;
-        cursor: pointer;
-        font-weight: bold
-    }
-    /*End Keypad*/
-    .margin-bottom-10{
-        margin-bottom: 10px;
-    }
-</style>
-<style>
-    .mi-form{
-        margin-bottom: 10px;
-    }
-
-    .nav-tabs-line>li>a {
-        padding: 10px 20px;
-        border: 0px;
-        border-radius: 0px;
-        border-bottom: 2px solid transparent
-    }
-
-    .nav-tabs-line>li>a:focus,.nav-tabs-line>li>a:hover {
-        background-color: transparent;
-        background: #afd4ea!important;
-        color: #fff!important;
-    }
-
-    .nav-tabs-line>li>a:hover {
-        border-bottom-color: #ccd5db
-    }
-
-    .nav-tabs-line>li.active>a,.nav-tabs-line>li.active>a:focus,.nav-tabs-line>li.active>a:hover {
-        color: #62a8ea;
-        background-color: transparent;
-        border: 0px;
-        border-radius: 0px;
-        border-bottom: 2px solid #62a8ea
-    }
-
-    .nav-tabs-line .open>a,.nav-tabs-line .open>a:focus,.nav-tabs-line .open>a:hover {
-        border-color: transparent;
-        border-bottom-color: #ccd5db
-    }
-
-    .nav-tabs-line.nav-tabs-bottom>li>a {
-        border-top: 2px solid transparent;
-        border-bottom: none
-    }
-
-    .nav-tabs-line.nav-tabs-bottom>li>a:hover {
-        border-top-color: #ccd5db;
-        border-bottom-color: transparent
-    }
-
-    .nav-tabs-line.nav-tabs-bottom>li.active>a,.nav-tabs-line.nav-tabs-bottom>li.active>a:focus,.nav-tabs-line.nav-tabs-bottom>li.active>a:hover {
-        border-top: 2px solid #62a8ea;
-        border-bottom: none
-    }
-
-    .nav-tabs-line.nav-justified>li>a {
-        border-bottom: 2px solid #e4eaec
-    }
-
-    .nav-tabs-line.nav-justified>li>a:hover {
-        border-bottom-color: #ccd5db
-    }
-
-    .nav-tabs-line.nav-justified>li.active>a,.nav-tabs-line.nav-justified>li.active>a:focus,.nav-tabs-line.nav-justified>li.active>a:hover {
-        border-color: transparent;
-        border-bottom: 2px solid #62a8ea
-    }
-
-    .nav-tabs-line.nav-justified.nav-tabs-bottom {
-        border-top: none
-    }
-
-    .nav-tabs-line.nav-justified.nav-tabs-bottom>li>a {
-        border-top: 2px solid #e4eaec;
-        border-bottom: none
-    }
-
-    .nav-tabs-line.nav-justified.nav-tabs-bottom>li>a:hover {
-        border-top-color: #ccd5db
-    }
-
-    .nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a,.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a:focus,.nav-tabs-line.nav-justified.nav-tabs-bottom>li.active>a:hover {
-        border-top-color: #62a8ea;
-        border-bottom: none
-    }
-
-</style>
 
