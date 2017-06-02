@@ -84,11 +84,11 @@
         <ul class="nav navbar-nav pull-right navbar-right">
             <li class="dropdown"> 
                 <a class="dropdown-toggle notoggle" aria-haspopup="true" aria-expanded="false"> 
-                    <span class="ng-binding">Language</span> 
+                    <span class="ng-binding">{{'LANGUAGE' | translate}}</span> 
                 </a>
                 <ul class="dropdown-menu lang pull-right animated fadeIn">
-                    <li><a ng-click="changeLanguage('vn')">Tiếng Việt</a></li>
-                    <li><a ng-click="changeLanguage('en')">English</a></li>
+                    <li><a ng-click="changeLanguage('vi')">{{ 'BUTTON_LANG_VI' | translate }}</a></li>
+                    <li><a ng-click="changeLanguage('en')">{{ 'BUTTON_LANG_EN' | translate }}</a></li>
                 </ul>
             </li>
             <li class="dropdown admin-dropdown"> 
@@ -97,8 +97,8 @@
                     <span class="hidden-sm">Khong Quoc Toan</span>
                 </a>
                 <ul class="dropdown-menu pull-right animated fadeIn">
-                    <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile">Profile</a></li>
-                    <li><a ui-sref="login" class="ng-binding" href="#/login">Logout</a></li>
+                    <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile" translate="Profile">Profile</a></li>
+                    <li><a ui-sref="login" class="ng-binding" href="#/login" translate="Logout">Logout</a></li>
                 </ul>
             </li>
         </ul> 

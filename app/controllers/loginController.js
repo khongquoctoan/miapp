@@ -1,4 +1,4 @@
 MiApp.controller("loginController",
-        function ($scope, $http, urls) {
+        function ($scope, $http) {
 
         });

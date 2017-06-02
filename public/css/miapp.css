@@ -1159,7 +1159,7 @@ td,th {
 
 
 .dashboard-page {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     right: 0;
@@ -2518,4 +2518,131 @@ input[type="search"] {
 
 .bold{
     font-weight: bold;
+}
+
+.transition {
+    transition: all .2s ease-in-out
+}
+
+.transition-slow {
+    transition: all .2s slow ease-in-out
+}
+
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    white-space: nowrap;
+    border-radius: 1000px;
+    vertical-align: bottom;
+}
+.avatar img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0 none;
+    border-radius: 1000px;
+}
+.avatar-xs {
+    width: 20px;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0px!important;
+}
+.list-group-dividered .list-group-item {
+    border-top-color: #e4eaec
+}
+
+.list-group-dividered .list-group-item.active:hover {
+    border-top-color: #e4eaec
+}
+
+.list-group-dividered .list-group-item:last-child {
+    border-bottom-color: #e4eaec
+}
+
+.list-group-dividered .list-group-item:first-child {
+    border-top-color: transparent
+}
+
+.list-group-dividered .list-group-item:first-child.active:hover {
+    border-top-color: transparent
+}
+.panel-body>.list-group-dividered:only-child>.list-group-item:last-child {
+    border-bottom-color: transparent
+}
+
+
+
+.dashboard .panel {
+    height: 350px
+}
+.dashboard .list-group-item{
+    padding: 10px 0px;
+}
+.todo-container,.todo-container .todo-header {
+    position: relative
+}
+
+.todo-container .todo-body .todo-list-wrap {
+    height: 232px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 15px
+}
+
+.todo-container .todo-body .todo-list {
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden
+}
+
+.todo-container .todo-body .todo-list li {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 15px
+}
+
+.todo-container .todo-body .todo-list li .checkbox1 input:checked+span:before {
+    background: inherit;
+    border-color: inherit;
+    content: "\2713"
+}
+
+.todo-container .todo-body .todo-list li .checkbox1 {
+    padding-right: 7px
+}
+
+.todo-container .todo-body .todo-list li .done-true {
+    text-decoration: line-through
+}
+
+.todo-container .todo-body .todo-from-bottom .form-control {
+    border-color: #fff
+}
+
+.todo-container .todo-body .todo-from-bottom .btn {
+    background: inherit;
+    color: #fff;
+    border-color: #fff
+}
+
+.todo-container .todo-body .checkbox1 span:before {
+    border-color: #fff
+}
+
+.todo-container.panel-danger .panel-heading {
+    background-color: #db5b57;
+    padding: 10px 15px;
+}
+.todo-container .bg-danger {
+    color: #fff;
+    background-color: #de6764;
 }

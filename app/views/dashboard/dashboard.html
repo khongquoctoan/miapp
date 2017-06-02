@@ -1,5 +1,89 @@
 <div class="row">
     <div class="col-md-4 col-lg-3">
+        <div class=home-charts-right>
+            <div class=top-right-chart>
+                <c3chart bindto-id=bar-chart>
+                    <chart-column column-id=Users column-values=33,27,36,47,55,37,32,39,28,21,37,42,32,26,18 column-type=bar>
+                        <chart-legend show-legend=false>
+                            <chart-tooltip-show-tooltip="false">
+                                <chart-colors color-pattern=#d9534f>
+                                    <chart-size chart-height=156 width=400>
+                                        <chart-axis>
+                                            <chart-axis-x show=false></chart-axis-x>
+                                            <chart-axis-y show=false></chart-axis-y>
+                                        </chart-axis>
+                                    </chart-size>
+                                </chart-colors>
+                            </chart-tooltip-show-tooltip="false">
+                        </chart-legend>
+                    </chart-column>
+                </c3chart>
+            </div>
+            <div class=bottom-right-chart>
+                <div class="top-left-chart clearfix">
+                    <div class=row>
+                        <div class="col-sm-6 text-left">
+                            <div class=padder> 
+                                <span class=heading>{{ 'TOTAL_CALLS' | translate }}: </span>
+                                <br> 
+                                <big class=text-primary>22068</big> 
+                            </div>
+                        </div>
+                        <div class=col-sm-6>
+                            <c3chart bindto-id=pie-chart>
+                                <chart-column column-id="{{ 'ANSWERED' | translate }}" column-values=10 column-type=pie>
+                                    <chart-column column-id="{{ 'NO_ANSWER' | translate }}" column-values=30 column-type=pie>
+                                        <chart-column column-id="{{ 'MISSCALL' | translate }}" column-values=5 column-type=pie>
+                                            <chart-legend show-legend=false>
+                                                <chart-tooltip-show-tooltip="false">
+                                                    <chart-colors color-pattern=#5CB85C,#3CA2E0,#f0ad4e>
+                                                        <chart-size chart-height=118 chart-width=100> </chart-size>
+                                                    </chart-colors>
+                                                </chart-tooltip-show-tooltip="false">
+                                            </chart-legend>
+                                        </chart-column>
+                                    </chart-column>
+                                </chart-column>
+                            </c3chart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-6">
+        <div class=home-charts-middle>
+            <div class=chart-container>
+                <div class="chart-comment clearfix">
+                    <div class="text-primary pull-left"> <span class=comment-header>55%</span><br> <span class=comment-comment>{{ 'ANSWERED' | translate }}</span> </div>
+                    <div class="text-success pull-left m-l"> <span class=comment-header>25%</span><br> <span class=comment-comment>{{ 'NO_ANSWER' | translate }}</span> </div>
+                    <div class="text-warning pull-left m-l"> <span class=comment-header>20%</span><br> <span class=comment-comment>{{ 'MISSCALL' | translate }}</span> </div>
+                </div>
+                <c3chart bindto-id=line-chart>
+                    <chart-column column-id="{{ 'ANSWERED' | translate }}" column-values=2,13,27,16,17,15,58 column-type=line>
+                        <chart-column column-id="{{ 'NO_ANSWER' | translate }}" column-values=6,17,36,12,36,27,40 column-type=line>
+                            <chart-column column-id="{{ 'MISSCALL' | translate }}" column-values=10,19,29,11,30,22,28 column-type=line>
+                                <chart-legend show-legend=true>
+                                    <chart-tooltip-show-tooltip="false">
+                                        <chart-colors color-pattern="#3CA2E0, #7BB77D, #f0ad4e">
+                                            <chart-size chart-height=260 width=100%>
+                                                <chart-axis>
+                                                    <chart-axis-x show=false></chart-axis-x>
+                                                    <chart-axis-y show=false></chart-axis-y>
+                                                </chart-axis>
+                                            </chart-size>
+                                        </chart-colors>
+                                    </chart-tooltip-show-tooltip="false">
+                                </chart-legend>
+                            </chart-column>
+                        </chart-column>
+                    </chart-column>
+                </c3chart>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
         <div class="home-stats">
             <a ui-sref="c3chart" class="stat hvr-wobble-horizontal" icon="cloud-upload" value="88%" text="Server Uptime" bgclass="info" link="c3chart" progress-value="88" href="#/dashboard/charts/c3chart">
                 <div class="stat-icon"> <i class="fa fa-cloud-upload fa-4x text-info"></i> </div>
@@ -37,6 +121,156 @@
                     </div>
                 </div>
             </a>
+
+        </div>
+    </div>
+
+</div>
+<div class="row clearfix dashboard">
+    <div class="col-md-4 col-lg-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ 'DASHBOARD_CUSTOMER' | translate }}</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group list-group-dividered list-group-full">
+                    <li class="list-group-item">
+                        <div class="media">
+                            <div class="media-left">
+                                <a class="avatar" href="#/module/customer/1039">
+                                    <img src="public/images/flat-avatar.png" alt="">
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div>
+                                    <a class="hightlight" href="#/module/customer/1039">Khổng Quốc Toàn Copy</a>
+                                </div>
+                                <small class="ng-binding">@KH1495535782
+                                    <time class="pull-right" datetime="2017-05-23 17:36:22">10 days ago</time>
+                                </small>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="media">
+                            <div class="media-left">
+                                <a class="avatar" href="#/module/customer/1039">
+                                    <img src="public/images/flat-avatar.png" alt="">
+                                    <i></i>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <div>
+                                    <a class="hightlight" href="#/module/customer/1039">Khổng Quốc Toàn Copy</a>
+                                </div>
+                                <small class="ng-binding">@KH1495535782
+                                    <time class="pull-right" datetime="2017-05-23 17:36:22">10 days ago</time>
+                                </small>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ 'DASHBOARD_HISTORY' | translate }}</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group list-group-dividered" style="margin-bottom: 0px">
+                    <li class="list-group-item ng-scope">
+                        <small class="label label-round label-info pull-right">publish</small>
+                        <p style="max-height: 45px;overflow: hidden;">
+                            <span class="ng-binding">toan test</span>
+                        </p>
+                        <small>
+                            <a class="hightlight" href="javascript:void(0)">
+                                <span class="avatar avatar-xs">
+                                    <img src="public/images/flat-avatar.png" alt="">
+                                </span>
+                                <span class="ng-binding">Khổng Quốc Toàn</span>
+                            </a>
+                            <time datetime="2017-05-29 17:07:16" class="pull-right">4 days ago</time>
+                        </small>
+                    </li>
+                    <li class="list-group-item ng-scope">
+                        <small class="label label-round label-info pull-right">publish</small>
+                        <p style="max-height: 45px;overflow: hidden;">
+                            <span class="ng-binding">toan test</span>
+                        </p>
+                        <small>
+                            <a class="hightlight" href="javascript:void(0)">
+                                <span class="avatar avatar-xs">
+                                    <img src="public/images/flat-avatar.png" alt="">
+                                </span>
+                                <span class="ng-binding">Khổng Quốc Toàn</span>
+                            </a>
+                            <time datetime="2017-05-29 17:07:16" class="pull-right">4 days ago</time>
+                        </small>
+                    </li>
+                    <li class="list-group-item ng-scope">
+                        <small class="label label-round label-info pull-right">publish</small>
+                        <p style="max-height: 45px;overflow: hidden;">
+                            <span class="ng-binding">toan test</span>
+                        </p>
+                        <small>
+                            <a class="hightlight" href="javascript:void(0)">
+                                <span class="avatar avatar-xs">
+                                    <img src="public/images/flat-avatar.png" alt="">
+                                </span>
+                                <span class="ng-binding">Khổng Quốc Toàn</span>
+                            </a>
+                            <time datetime="2017-05-29 17:07:16" class="pull-right">4 days ago</time>
+                        </small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <div class="todo-container panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ 'DASHBOARD_TODO_LIST' | translate }}</h3>
+            </div>
+            <div class="panel-body bg-danger">
+                <div class="todo-body ng-scope">
+                    <div class="todo-list-wrap ps-container">
+                        <ul class="todo-list">
+                            <li> 
+                                <label class="checkbox1 animated bounceInRight" for="option5"> 
+                                    <input id="option5" type="checkbox" ng-model="todo.done" class="ng-pristine ng-untouched ng-valid"> 
+                                    <span></span> 
+                                </label> 
+                                <span class="done-false animated bounceInRight">Henna birthday at Mezbaan.</span> 
+                            </li>
+                        </ul>
+                        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
+                            <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
+                            <div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div>
+                        </div>
+                    </div>
+                    <form class="form-horizontal todo-from-bottom" style="margin-bottom: 0px">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group"> 
+                                    <input type="text" class="form-control" ng-model="formTodoText"> 
+                                    <span class="input-group-btn"> 
+                                        <button class="btn btn-default" ng-click="addTodo()" type="submit">Add</button> 
+                                    </span> 
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

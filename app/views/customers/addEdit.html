@@ -4,7 +4,7 @@
             <div class="row">
                 <!-- Profile basic -->
                 <div class="col-md-9">
-                    <h4 class="bold"><i class="fa fa-user-circle"></i> {{!tab.customer.lastName && !tab.customer.firstName ? 'Anonymous' : tab.customer.lastName+' '+tab.customer.firstName}} [{{'Tab: '+tab.index}}]
+                    <h4 class="bold"><i class="fa fa-user-circle"></i> {{!tab.customer.lastName && !tab.customer.firstName ? ('BLANK_NAME' | translate) : tab.customer.lastName+' '+tab.customer.firstName}} [{{'Tab: '+tab.index}}]
                         <div class="panel-control pull-right"> 
                             <a class="panelButton" style="color: inherit"><i class="fa fa-refresh"></i></a>
                             <a class="panelButton" style="color: inherit" ng-click="removeTab($index)"><i class="fa fa-remove"></i></a>

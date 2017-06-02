@@ -1,10 +1,23 @@
 var MiApp = angular.module('MiApp',
-        ['ui.router', 'ui.bootstrap', 'ngTagsInput',
-            'ngStorage', 'ngSanitize', 'oc.lazyLoad',
-            'cp.ngConfirm', 'toastr'
+        ['ui.router', 'ui.bootstrap', 'ngTagsInput', 'ngCookies', 'CRUDSrvc',
+            'ngStorage', 'ngSanitize', 'oc.lazyLoad', 'angularMoment',
+            'cp.ngConfirm', 'toastr', 'gridshore.c3js.chart', 'checklist-model',
+            'pascalprecht.translate', '720kb.tooltips'
         ]
         ); //
 var appTabs = [], appTabActive = 0, limitAppTabs = 5, isCurrentAppTabsActive = '';
+
+//var translationsVN = {
+//Khai báo biến trong ngôn ngữ
+//"TRANSLATION_ID": "{{username}} is logged in."
+//---
+//Cách gọi và gán biến ---
+//$scope.translationData = {
+//    username: 'PascalPrecht'
+//};
+//Trong view
+//{{ 'TRANSLATION_ID' | translate:translationData }}
+//};
 
 MiApp.factory('tabsService', function () {
     return {
@@ -12,10 +25,10 @@ MiApp.factory('tabsService', function () {
     };
 });
 
-MiApp.constant('urls', {
-    BASE: 'http://contact-popup.dev/',
-    BASE_API: 'http://api.mitek-popup.dev/api/v1/'
-});
+//MiApp.constant('urls', {
+//    BASE: 'http://contact-popup.dev/',
+//    BASE_API: 'http://api.mitek-popup.dev/api/v1/'
+//});
 
 MiApp.directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
         return {
@@ -40,7 +53,22 @@ MiApp.directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
         };
     }]);
 
-MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig) {
+MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig, $translateProvider, $httpProvider) {
+    //Load file language
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'app/languages/locale-',
+        suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('vi'); //Default language
+    //Nếu biến ngôn ngữ ko tồn tại thì load ngôn ngữ này làm mặc định (ngôn ngữ dự phòng)
+    $translateProvider.fallbackLanguage('vi');
+    // Enable escaping of HTML
+    $translateProvider.useSanitizeValueStrategy('escape');
+//    $translateProvider.useSanitizeValueStrategy('escapeParameters');
+//    $translateProvider.useSanitizeValueStrategy('sanitize');
+    // remember language
+    $translateProvider.useLocalStorage();
+
     var helloState = {
         name: 'hello',
         url: '/hello',
@@ -128,15 +156,36 @@ MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig) {
         target: 'body'
     });
     //END CONFIG PLUGINS --------------------------------
+//    $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+//            return {
+//                'request': function (config) {
+//                    config.headers = config.headers || {};
+//                    if (typeof $localStorage.user != 'undefined' && $localStorage.user.isAuthenticated) {
+//                        config.headers.Authorization = 'Bearer ' + $localStorage.user.isAuthenticated;
+//                    }
+//                    return config;
+//                },
+//                'responseError': function (response) {
+//                    if (response.status === 401 || response.status === 403) {
+//                        $location.path('/login');
+//                    }
+//                    return $q.reject(response);
+//                }
+//            };
+//        }]);
 });
 
-MiApp.run(function ($rootScope, $state, $localStorage, $stateParams, $location, urls) {
-    $rootScope.urls = urls;
+MiApp.run(function ($rootScope, $state, $localStorage, $stateParams, $location, $translate) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-
+        console.log('dada');
     });
-
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-        //console.log();
+        console.log('dada');
+
     });
+    //
+    //    $rootScope.$on('$translatePartialLoaderStructureChanged', function () {
+    //        console.log('call-----:))');
+    //        $translate.refresh();
+    //    });
 });

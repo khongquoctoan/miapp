@@ -8,35 +8,56 @@
             </div>
             <div class="panel-body">
                 <p>
-                    <a href="javascript:void(0)" ng-click="showTabCustomer('new', 0, 'info')" class="btn btn-default"><i class="fa fa-plus"></i></a> 
-                    <button type="button" class="btn btn-info"><i class="fa fa-upload"></i></button> 
-                    <button type="button" class="btn btn-warning"><i class="fa fa-download"></i></button> 
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                    <a tooltips tooltip-side="bottom" tooltip-template="{{ 'ADD' | translate }}" href="javascript:void(0)" ng-click="showTabCustomer('new', 0, 'info')" class="btn btn-default"><i class="fa fa-plus"></i></a> 
+                    <button tooltips tooltip-side="bottom" tooltip-template="{{ 'IMPORT' | translate }}" type="button" class="btn btn-info"><i class="fa fa-upload"></i></button> 
+                    <button tooltips tooltip-side="bottom" tooltip-template="{{ 'EXPORT' | translate }}" type="button" class="btn btn-warning"><i class="fa fa-download"></i></button> 
+                    <button tooltips tooltip-side="bottom" tooltip-template="{{ 'DELETE_SELECT' | translate }}" type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                 </p>
-                <hr/>
-                <table class="table">
+                <hr/>{{checkCus123}}
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
+                            <th>
+                                <label class="checkbox1" for="ipCusListCheckAll"> 
+                                    <input id="ipCusListCheckAll" ng-click="checkAllCus($event)" type="checkbox"> <span></span> 
+                                </label>
+                            </th>
+                            <th class="col-md-2">{{ 'CUSTOMER_CODE' | translate }}</th>
+                            <th class="col-md-3">{{ 'CUSTOMER_NAME' | translate }}</th>
+                            <th class="col-md-2">{{ 'MOBILE' | translate }}</th>
+                            <th class="col-md-2">{{ 'PHONE' | translate }}</th>
+                            <th class="col-md-2">{{ 'EMAIL' | translate }}</th>
+                            <th class="col-md-1"></th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th class="col-md-2">{{ 'CUSTOMER_CODE' | translate }}</th>
+                            <th class="col-md-3">{{ 'CUSTOMER_NAME' | translate }}</th>
+                            <th class="col-md-2">{{ 'MOBILE' | translate }}</th>
+                            <th class="col-md-2">{{ 'PHONE' | translate }}</th>
+                            <th class="col-md-2">{{ 'EMAIL' | translate }}</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
                     <tbody>
-                        <tr>
-                            <td ng-click="showTabCustomer('info', '2', 'info')">John</td>
-                            <td>john@gmail.com</td>
-                            <td>London, UK</td>
-                        </tr>
-                        <tr>
-                            <td>Andy</td>
-                            <td>andygmail.com</td>
-                            <td>Merseyside, UK</td>
-                        </tr>
-                        <tr>
-                            <td>Frank</td>
-                            <td>frank@gmail.com</td>
-                            <td>Southampton, UK</td>
+
+                        <tr data-ng-repeat="customer in dataCustomers" ng-mouseenter="viewIcon = true" ng-mouseleave="viewIcon = false">
+                            <td>
+                                <label class="checkbox1" for="ipCusListCheck{{customer.id}}"> 
+                                    <input id="ipCusListCheck{{customer.id}}" checklist-model="checkCus123" checklist-value="customer.id" name="ipCusListCheck{{customer.id}}" type="checkbox" /> <span></span> 
+                                </label>
+                            </td>
+                            <td>{{customer.customerCode}}</td>
+                            <td>{{customer.lastName + ' ' + customer.firstName}}</td>
+                            <td>{{customer.mobile}} <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-if="customer.mobile && viewIcon"><i class="fa fa-phone" aria-hidden="true"></i></button></td>
+                            <td>{{customer.phone}} <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-if="customer.phone && viewIcon"><i class="fa fa-phone" aria-hidden="true"></i></button></td>
+                            <td>{{customer.email}}</td>
+                            <td>
+                                <a ng-show="viewIcon" tooltips tooltip-template="{{ 'EDIT' | translate }}" class="btn btn-floating btn-success btn-xs" ng-click="addTab(customer.lastName + ' ' + customer.firstName, 'customerDetail', {customerId: customer.id})" href="javascript:void(0)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <button ng-if="viewIcon" tooltips tooltip-template="{{ 'DELETE' | translate }}" type="button" ng-click="deleteCustomer(customer.id)" class="btn btn-floating btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,19 +66,19 @@
 
 
     </div>
-<!--    <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Default Form
-                    <div class="panel-control pull-right"> <a class="panelButton"><i class="fa fa-refresh"></i></a> <a class="panelButton"><i class="fa fa-minus"></i></a> <a class="panelButton"><i class="fa fa-remove"></i></a> </div>
-                </h3>
+    <!--    <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Default Form
+                        <div class="panel-control pull-right"> <a class="panelButton"><i class="fa fa-refresh"></i></a> <a class="panelButton"><i class="fa fa-minus"></i></a> <a class="panelButton"><i class="fa fa-remove"></i></a> </div>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form class="ng-pristine ng-valid">
+                        <div class="form-group"> <label for="exampleInputEmail1">Email address</label> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> </div>
+                        <div class="form-group"> <label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> </div>
+                        <div class="checkbox"> <label> <input type="checkbox"> Remember me </label> </div> <button type="submit" class="btn btn-default">Submit</button> </form>
+                </div>
             </div>
-            <div class="panel-body">
-                <form class="ng-pristine ng-valid">
-                    <div class="form-group"> <label for="exampleInputEmail1">Email address</label> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> </div>
-                    <div class="form-group"> <label for="exampleInputPassword1">Password</label> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> </div>
-                    <div class="checkbox"> <label> <input type="checkbox"> Remember me </label> </div> <button type="submit" class="btn btn-default">Submit</button> </form>
-            </div>
-        </div>
-    </div>-->
+        </div>-->
 </div>

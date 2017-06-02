@@ -2,7 +2,7 @@
 
 "use strict";
 MiApp.controller("customerActionController",
-        function ($scope, $http, urls, $stateParams) {
+        function ($scope, $http, $stateParams) {
             console.log($stateParams);
             console.log('customerActionController---');
             if (!$scope.appTabs.length) {
