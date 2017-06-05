@@ -2,29 +2,51 @@
 
 MiApp.controller("customerController",
         function ($scope, $rootScope, $http, CustomersService) {
-            console.log('load customerController');
-
-            $scope.initCustomers = function () {
-                console.log('Call initCustomers ---');
+            var vm = this;
+            vm.initCustomers = function () {
                 var req = CustomersService.getCustomers({start: 0, limit: 10});
                 req.then(function (response) {
-                    $scope.dataCustomers = response.data.data;
+                    vm.dataCustomers = response.data.data;
                 });
             };
 
-            $scope.initCustomers();
+            vm.initCustomers();
 
-            $scope.checkAllCus = function ($event) {
+            vm.checkAllCus = function ($event) {
                 var checkbox = $event.target;
                 if (checkbox.checked) {
-                    $scope.checkCus123 = $scope.dataCustomers.map(function (item) {
+                    vm.listCheckCus = vm.dataCustomers.map(function (item) {
                         return item.id;
                     });
                 } else {
-                    $scope.checkCus123 = [];
-                    console.log('Call----');
+                    vm.listCheckCus = [];
                 }
-                console.log($scope.checkCus123);
             };
 
+            vm.checkCus = function ($event, rowId) {
+                var checkbox = $event.target;
+                if (checkbox.checked) {
+                    if (typeof vm.listCheckCus === 'undefined') {
+                        vm.listCheckCus = [rowId];
+                    } else {
+                        var existCheck = false;
+                        vm.listCheckCus.forEach(function (val, key) {
+                            if (val === rowId) {
+                                existCheck = true;
+                                return;
+                            }
+                        });
+                        if (!existCheck) {
+                            vm.listCheckCus.push(rowId);
+                        }
+                    }
+                } else {
+                    vm.listCheckCus.forEach(function (val, key) {
+                        if (val === rowId) {
+                            vm.listCheckCus.splice(key, 1);
+                            return;
+                        }
+                    });
+                }
+            };
         });

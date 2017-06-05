@@ -16,11 +16,11 @@ MiApp.controller("appController",
             };
 
             ///Tabs
-            $scope.appTabs = appTabs;
+            $scope.appTabs = tabsService.appTabs;
             //End Global -------------------
 
             //Check get module
-            var listModules = ['dashboard', 'customers', 'customer', 'notes', 'monitor', 'callhistory', 'users', 'help'];
+            var listModules = ['dashboard', 'customers', 'customer', 'notes', 'monitor', 'reports', 'callhistory', 'users', 'help', 'feedback'];
             if (typeof $scope.appPModule === 'undefined' || listModules.indexOf($scope.appPModule) === -1) {
                 $state.go('index', {module: 'dashboard'});
             }
@@ -30,7 +30,7 @@ MiApp.controller("appController",
             //Config tabs ----------------------------------------------
             $scope.showTabCustomer = function (action, id, type, infoDetail) {
 
-                $translate(['ANONYMOUS', 'CURRENT_CUSTOMER']).then(function (translations) {
+                $translate(['ANONYMOUS', 'INFO_CUSTOMER']).then(function (translations) {
                     action = action || 'new';
                     type = type || '';  //info: exist customer or blank: anonymous customer
                     infoDetail = infoDetail || [];
@@ -39,7 +39,7 @@ MiApp.controller("appController",
                     var titleTabs = '';
                     if (type === 'info') {
                         id = id || 0;
-                        titleTabs = translations.CURRENT_CUSTOMER; //'Current customer';
+                        titleTabs = translations.INFO_CUSTOMER;
                         setStateParams.id = id;
                     } else {
                         id = id || (new Date().getTime() / 1000);
@@ -81,7 +81,7 @@ MiApp.controller("appController",
                     }
                 });
 
-                if (currentTabs.length > (limitAppTabs - 1) && !response.status) {
+                if (currentTabs.length > (tabsService.limitAppTabs - 1) && !response.status) {
                     response.status = -1;
                 }
                 return response;

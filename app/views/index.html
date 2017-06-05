@@ -4,7 +4,7 @@
     <!-- uiView:  -->
     <section id="body-container">
         <section ng-show="appPModule == 'dashboard'" ng-controller="dashboardController" ng-include="'app/views/dashboard/dashboard.html'">...</section>
-        <div class="conter-wrapper" ng-if="appPModule == 'customers'" ng-controller="customerController" ng-include="'app/views/customers/customers.html'">...</div>
+        <div class="conter-wrapper" ng-if="appPModule == 'customers'" ng-controller="customerController as cus" ng-include="'app/views/customers/customers.html'">...</div>
         <section ng-if="appPModule == 'customer' && appPAction" ng-controller="customerActionController" ng-include="'app/views/customers/customerAction.html'">...</section>
 
     </section>

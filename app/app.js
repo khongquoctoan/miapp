@@ -1,11 +1,11 @@
 var MiApp = angular.module('MiApp',
-        ['ui.router', 'ui.bootstrap', 'ngTagsInput', 'ngCookies', 'CRUDSrvc',
+        ['ui.router', 'ui.bootstrap', 'ngTagsInput', 'ngCookies',
+            'CRUDSrvc', 'checklist-model', 'pascalprecht.translate',
             'ngStorage', 'ngSanitize', 'oc.lazyLoad', 'angularMoment',
-            'cp.ngConfirm', 'toastr', 'gridshore.c3js.chart', 'checklist-model',
-            'pascalprecht.translate', '720kb.tooltips'
-        ]
-        ); //
-var appTabs = [], appTabActive = 0, limitAppTabs = 5, isCurrentAppTabsActive = '';
+            'cp.ngConfirm', 'toastr', 'gridshore.c3js.chart',
+            '720kb.tooltips'
+        ]);
+var appTabs = [], limitAppTabs = 5, isCurrentAppTabsActive = '';
 
 //var translationsVN = {
 //Khai báo biến trong ngôn ngữ
@@ -21,22 +21,19 @@ var appTabs = [], appTabActive = 0, limitAppTabs = 5, isCurrentAppTabsActive = '
 
 MiApp.factory('tabsService', function () {
     return {
-        currentActive: ''
+        appTabs: [],
+        currentActive: '',
+        limitAppTabs: 5
     };
 });
 
-//MiApp.constant('urls', {
-//    BASE: 'http://contact-popup.dev/',
-//    BASE_API: 'http://api.mitek-popup.dev/api/v1/'
-//});
-
+//Set default focus input
 MiApp.directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
         return {
             //scope: true,   // optionally create a child scope
             link: function (scope, element, attrs) {
                 var model = $parse(attrs.focusMe);
                 scope.$watch(model, function (value) {
-//                    console.log('value=', value);
                     if (value === true) {
                         $timeout(function () {
                             element[0].focus();
@@ -44,9 +41,7 @@ MiApp.directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
                     }
                 });
                 // to address @blesh's comment, set attribute value to 'false'
-                // on blur event:
                 element.bind('blur', function () {
-//                    console.log('blur');
 //                    scope.$apply(model.assign(scope, false));
                 });
             }
@@ -132,7 +127,7 @@ MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig, $transl
 //                            'public/js/plugins.min.js'
 //                        ]
 //                    }
-                ])
+                ]);
             }
         },
         data: {requireLogin: true}
@@ -183,9 +178,4 @@ MiApp.run(function ($rootScope, $state, $localStorage, $stateParams, $location, 
         console.log('dada');
 
     });
-    //
-    //    $rootScope.$on('$translatePartialLoaderStructureChanged', function () {
-    //        console.log('call-----:))');
-    //        $translate.refresh();
-    //    });
 });

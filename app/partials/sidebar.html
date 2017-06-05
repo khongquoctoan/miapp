@@ -3,61 +3,68 @@
         <div class="side-menu">
             <div class="menu-body">
                 <ul class="nav nav-pills nav-stacked sidenav">
-                    <li ng-class="appPModule=='dashboard'?'active':''"> 
+                    <li ng-class="appPModule == 'dashboard' ? 'active' : ''"> 
                         <a href="#!/index?module=dashboard"> <span class="glyphicon glyphicon-home"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=dashboard">{{ 'DASHBOARD' | translate }}</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='customers'?'active':''"> 
+                    <li ng-class="appPModule == 'customers' ? 'active' : ''"> 
                         <a href="#!/index?module=customers"> <span class="fa fa-users"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=customers">{{ 'CUSTOMERS' | translate }}</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='notes'?'active':''"> 
+                    <li ng-class="appPModule == 'notes' ? 'active' : ''"> 
                         <a href="#!/index?module=notes"> <span class="fa fa-history"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=notes">{{ 'NOTES' | translate }}</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='monitor'?'active':''"> 
+                    <li ng-class="appPModule == 'monitor' ? 'active' : ''"> 
                         <a href="#!/index?module=monitor"> <span class="glyphicon glyphicon-dashboard"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=monitor">{{ 'MONITOR' | translate }}</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='callhistory'?'active':''"> 
+                    <li ng-class="appPModule == 'reports' ? 'active' : ''"> 
+                        <a href="#!/index?module=reports"> <span class="fa fa-line-chart"></span> </a>
+                        <ul class="nested-dropdown animated fadeIn">
+                            <li class="sidemenu-header ng-binding">{{ 'REPORTS' | translate }}</li>
+                            <li><a ng-class="" href="#!/index?module=reports">{{ 'REPORTS-A' | translate }}</a></li>
+                            <li><a ng-class="" href="#!/index?module=reports">{{ 'REPORTS-B' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="appPModule == 'callhistory' ? 'active' : ''"> 
                         <a href="#!/index?module=callhistory"> <span class="glyphicon glyphicon-transfer"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=callhistory">{{ 'CALLHISTORY' | translate }}</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='users'?'active':''"> 
+                    <li ng-class="appPModule == 'users' ? 'active' : ''"> 
                         <a href="#!/index?module=users"> <span class="fa fa-user-circle"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=users">{{ 'USERS' | translate }}</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='customer'?'active':''"> 
+                    <li ng-class="appPModule == 'customer' ? 'active' : ''"> 
                         <a href="javascript:void(0)" ng-click="showTabCustomer('new', 0, '')"> <span class="fa fa-folder-o"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="javascript:void(0)">Add Tabs</a></li>
                         </ul>
                     </li>
-                    <li ng-class="appPModule=='help'?'active':''"> 
-                        <a href="#!/index?module=help"> <span class="fa fa-question-circle-o"></span> </a>
+                    <li ng-class="appPModule == 'help' ? 'active' : ''"> 
+                        <a href="#!/index?module=help"> <span class="fa fa-life-ring"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
                             <li><a ng-class="" href="#!/index?module=help">{{ 'HELP' | translate }}</a></li>
                         </ul>
                     </li>
-<!--                    <li> <a ui-sref="elements" href="#/dashboard/form/elements"> <span class="glyphicon glyphicon-equalizer"></span> </a>
+                    <li ng-class="appPModule == 'feedback' ? 'active' : ''"> 
+                        <a href="#!/index?module=feedback"> <span class="fa fa-question-circle-o"></span> </a>
                         <ul class="nested-dropdown animated fadeIn">
-                            <li class="sidemenu-header ng-binding">Form</li>
-                            <li><a ng-class="{active: $state.includes('form')}" ui-sref="elements" href="#/dashboard/form/elements">Form Elements</a></li>
-                            <li><a ng-class="{active: $state.includes('form')}" ui-sref="components" href="#/dashboard/form/components">Form Components</a></li>
+                            <li><a ng-class="" href="#!/index?module=feedback">{{ 'FEEDBACK' | translate }}</a></li>
                         </ul>
-                    </li>-->
+                    </li>
                     
                 </ul>
             </div>
@@ -67,7 +74,7 @@
                 <div class="text-center"> <a ui-sref="profile" href="#/dashboard/profile"><img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar"></a>
                     <div class="text-center avatar-name">Khong Quoc Toan</div>
                 </div>
-               
+
                 <div class="news-feed">
                     <div class="feed-header ng-binding">{{ 'NEWS_FEED' | translate }}</div>
                     <div class="feed-content">
@@ -81,11 +88,11 @@
                 </div>
             </div>
         </div>
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
+<!--        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;">
             <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
         </div>
         <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
             <div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div>
-        </div>
+        </div>-->
     </div>
 </aside>
