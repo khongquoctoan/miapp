@@ -48,7 +48,7 @@ MiApp.directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
         };
     }]);
 
-MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig, $translateProvider, $httpProvider) {
+MiApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$translateProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, toastrConfig, $translateProvider, $httpProvider) {
     //Load file language
     $translateProvider.useStaticFilesLoader({
         prefix: 'app/languages/locale-',
@@ -109,7 +109,7 @@ MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig, $transl
             'footer@index': {templateUrl: 'app/partials/footer.html'}
         },
         resolve: {
-            loadPlugin: function ($ocLazyLoad) {
+            loadPlugin: ['$ocLazyLoad', function ($ocLazyLoad) {
                 return $ocLazyLoad.load([
 //                    {
 //                        name: 'css',
@@ -128,7 +128,7 @@ MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig, $transl
 //                        ]
 //                    }
                 ]);
-            }
+            }]
         },
         data: {requireLogin: true}
     });
@@ -169,7 +169,7 @@ MiApp.config(function ($stateProvider, $urlRouterProvider, toastrConfig, $transl
                 }
             };
         }]);
-});
+}]);
 
 //MiApp.run(['$rootScope', '$location', '$state', '$localStorage',
 //    function ($rootScope, $location, $state, $localStorage) {

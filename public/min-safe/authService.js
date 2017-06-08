@@ -1,7 +1,7 @@
 var login = angular.module('AuthSrvc', [])
         .constant('BASE_API', 'https://api-popupcontact-02.mitek.vn:4431/api/v1/');
 
-login.factory('Login', function ($http, $localStorage, $rootScope, BASE_API) {
+login.factory('Login', ['$http', '$localStorage', '$rootScope', 'BASE_API', function ($http, $localStorage, $rootScope, BASE_API) {
 
     function changeAuth(loginStatus, loginInfo, loginRole) {
         if (typeof $localStorage.user === 'undefined') {
@@ -36,4 +36,4 @@ login.factory('Login', function ($http, $localStorage, $rootScope, BASE_API) {
             );
         }
     };
-});
+}]);

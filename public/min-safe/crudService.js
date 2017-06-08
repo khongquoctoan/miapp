@@ -2,7 +2,7 @@ var crud = angular.module('CRUDSrvc', [])
         .constant('BASE_API', 'https://api-popupcontact-02.mitek.vn:4431/api/v1/');
 
 //Get data for customers
-crud.factory("CustomersService", function ($http, BASE_API) {
+crud.factory("CustomersService", ['$http', 'BASE_API', function ($http, BASE_API) {
     return {
         //List
         getCustomers: function (pageNumber, data) {
@@ -38,9 +38,9 @@ crud.factory("CustomersService", function ($http, BASE_API) {
             return request;
         }
     };
-});
+}]);
 
-crud.factory("noteService", function ($http, BASE_API) {
+crud.factory("noteService", ['$http', 'BASE_API', function ($http, BASE_API) {
     return {
         insertNote: function (customerId, note) {
             return $http.post(BASE_API + 'postNote/' + customerId, note);
@@ -50,4 +50,4 @@ crud.factory("noteService", function ($http, BASE_API) {
             return $http.get(BASE_API + 'getTags');
         }
     };
-});
+}]);

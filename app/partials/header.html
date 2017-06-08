@@ -52,7 +52,7 @@
         <ul class="nav navbar-nav pull-right navbar-right">
             <li class="dropdown"> 
                 <a class="dropdown-toggle notoggle" aria-haspopup="true" aria-expanded="false"> 
-                    <span class="ng-binding">{{'LANGUAGE' | translate}}</span> 
+                    <span class="">{{'LANGUAGE' | translate}}</span> 
                 </a>
                 <ul class="dropdown-menu lang pull-right animated fadeIn">
                     <li><a ng-click="changeLanguage('vi')">{{ 'BUTTON_LANG_VI' | translate }}</a></li>
@@ -65,8 +65,8 @@
                     <span class="hidden-sm">Khong Quoc Toan</span>
                 </a>
                 <ul class="dropdown-menu pull-right animated fadeIn">
-                    <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile" translate="Profile">Profile</a></li>
-                    <li><a ui-sref="login" class="ng-binding" href="#/login" translate="Logout">Logout</a></li>
+                    <li><a class="" href="#/dashboard/profile" translate="PROFILE">Profile</a></li>
+                    <li><a class="" href="javascript:void(0)" ng-click="logout()" translate="LOGOUT">Logout</a></li>
                 </ul>
             </li>
         </ul> 
@@ -74,8 +74,8 @@
     <ul class="nav navbar-nav pull-right hidd">
         <li class="dropdown admin-dropdown" dropdown="" on-toggle="toggled(open)"> <a class="dropdown-toggle animated fadeIn" aria-haspopup="true" aria-expanded="false"><img src="public/images/flat-avatar.png" class="topnav-img"></a>
             <ul class="dropdown-menu pull-right">
-                <li><a ui-sref="profile" class="ng-binding" href="#/dashboard/profile">Profile</a></li>
-                <li><a ui-sref="login" class="ng-binding" href="#/login">Logout</a></li>
+                <li><a ui-sref="profile" class="" href="#/dashboard/profile">Profile</a></li>
+                <li><a ui-sref="login" class="" href="#/login">Logout</a></li>
             </ul>
         </li>
     </ul>

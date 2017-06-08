@@ -4,79 +4,89 @@
             <div class="row">
                 <!-- Profile basic -->
                 <div class="col-md-9">
-                    <h4 class="bold"><i class="fa fa-user"></i> {{!tab.customer.lastName && !tab.customer.firstName ? ('BLANK_NAME' | translate) : tab.customer.lastName+' '+tab.customer.firstName}} [{{'Tab: '+tab.index}}]
-                        <div class="panel-control pull-right"> 
+                    <h4 class="bold"><i class="fa fa-user"></i> {{!tab.customer.info.lastName && !tab.customer.info.firstName ? ('BLANK_NAME' | translate) : tab.customer.info.lastName + ' ' + tab.customer.info.firstName}} [{{'Tab: '+tab.index}}]
+                        <span class="panel-control pull-right"> 
                             <a class="panelButton" style="color: inherit"><i class="fa fa-refresh"></i></a>
                             <a class="panelButton" style="color: inherit" ng-click="removeTab($index)"><i class="fa fa-remove"></i></a>
-                        </div>
+                        </span>
                     </h4>
                     <div class="well" style="min-height: 290px;padding-bottom: 10px;margin-bottom: 0px"> 
-                        <div class="row clearfix">
+                        <div class="row clearfix" ng-if="!tab.customer.info.id">
                             <form class="form-horizontal form-visible-input" style="margin: 0px">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <div class="form-group mi-form">
+                                        <div class="form-group margin-bottom-0">
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.firstName" focus-me="true" class="form-control" placeholder="Nhập tên khách hàng">
+                                                <input ng-model="tab.customer.info.firstName" focus-me="true" class="form-control" placeholder="{{'ENTER_FIRSTNAME'| translate}}">
                                             </div>
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.lastName" class="form-control" placeholder="Nhập họ khách hàng">
+                                                <input ng-model="tab.customer.info.lastName" class="form-control" placeholder="{{'ENTER_LASTNAME'| translate}}">
                                             </div>
                                         </div>
-                                        <div class="form-group mi-form">
+                                        <div class="form-group margin-bottom-0">
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.mobile" class="form-control" placeholder="Nhập số di động">
+                                                <input ng-model="tab.customer.info.mobile" class="form-control" placeholder="{{'ENTER_MOBILE'| translate}}">
                                             </div>
                                             <div class="col-md-6">
-                                                <input ng-model="tab.customer.phone" class="form-control" placeholder="Nhập số máy bàn">
+                                                <input ng-model="tab.customer.info.phone" class="form-control" placeholder="{{'ENTER_PHONE_NUMBER'| translate}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 pull-right text-center">
-                                        <img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar">
+                                        <img style="width: 70px" src="public/images/flat-avatar.png" class="user-avatar">
                                     </div>
                                 </div>
-                                <div class="form-group mi-form">
-                                    <div class="col-md-10">
-                                        <input ng-model="tab.customer.tags" class="form-control" placeholder="Tags khách hàng">
-                                    </div>
-                                    <div class="col-md-2 text-center">
-                                        <button class="btn btn-primary btn-sm" ng-model="tab.customer.firstName">Lưu</button>
+                                <div class="form-group mi-form cus-info">
+                                    <div class="col-md-10" style="height: 35px">
+                                        <tags-input class="bootstrap-tags-input" placeholder="{{'ADD_TAGS_CUSTOMER'| translate}}" ng-model="tab.customer.info.tags_list" display-property="tag_name" key-property="id" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" on-tag-added="vm.cusUpdateTags()" on-tag-removed="vm.cusUpdateTags()">
+                                            <auto-complete source="loadTags($query, tab.customer.tags)" min-length="0" debounce-delay="0" load-on-focus="true" load-on-empty="true" max-results="10"></auto-complete>
+                                        </tags-input>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="row clearfix" style="display: none">
+                        <div class="row clearfix cus-info" ng-if="tab.customer.info.id">
                             <div class="col-md-9">
                                 <address> 
-                                    <strong class="text-dark">Mitek Company, Inc.</strong> 
-                                    <br> 
-                                    <abbr title="Phone">P:</abbr> 0933 961 912 - 08 1919 1919
+                                    <abbr title="Phone">Phone:</abbr> 
+                                    {{tab.customer.info.mobile}}
+                                    <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-show="tab.customer.info.mobile"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                                    {{tab.customer.info.phone ? ' - ':''}}
+                                    {{tab.customer.info.phone}}
+                                    <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-show="tab.customer.info.phone"><i class="fa fa-phone" aria-hidden="true"></i></button>
                                     <br> 
                                     <strong class="text-dark">E-mail:</strong> 
-                                    <a href="mailto:#"> info@customer.com </a> 
+                                    <a href="mailto:#"> {{tab.customer.info.email}} </a> 
                                 </address> 
-                                <address> 
-                                    <strong class="text-dark">Tags: </strong> VIP, San pham 1
+                                <address style="margin-bottom: 10px;height:35px"> 
+                                    <tags-input class="bootstrap-tags-input" placeholder="{{'ADD_TAGS_NOTE'| translate}}" ng-model="tab.customer.info.tags_list" display-property="tag_name" key-property="id" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" on-tag-added="vm.cusUpdateTags()" on-tag-removed="vm.cusUpdateTags()">
+                                        <auto-complete source="loadTags($query, tab.customer.tags)" min-length="0" debounce-delay="0" load-on-focus="true" load-on-empty="true" max-results="10"></auto-complete>
+                                    </tags-input>
                                 </address> 
                             </div>
                             <div class="col-md-2 pull-right text-center">
-                                <img style="width: 80px" src="public/images/flat-avatar.png" class="user-avatar"><br/>
-                                <button class="btn btn-primary btn-sm" ng-model="tab.customer.firstName">Cập nhật</button>
+                                <img style="width: 70px" src="public/images/flat-avatar.png" class="user-avatar">
                             </div>
                         </div>
                         <hr style="margin: 0px 0px 12px 0px"/>
                         <div class="row clearfix">
-                            <form class="form-horizontal" style="margin: 0px">
+                            <form class="form-horizontal margin-bottom-0" name="frmCustomerNote" autocomplete="off" ng-submit="frmCustomerNote.$valid && addNote($event, tab)" novalidate>
                                 <div class="form-group mi-form">
-                                    <div class="col-md-12">
-                                        <input ng-model="tab.note.tags" class="form-control" placeholder="Tags nội dung">
+                                    <div class="col-md-12" style="height: 35px;">
+                                        <tags-input class="bootstrap-tags-input" placeholder="{{'ADD_TAGS_NOTE'| translate}}" ng-model="tab.note.tags" display-property="tag_name" key-property="id" add-from-autocomplete-only="true" replace-spaces-with-dashes="false">
+                                            <auto-complete source="loadTags($query, tab.customer.tags)" min-length="0" debounce-delay="0" load-on-focus="true" load-on-empty="true" max-results="10"></auto-complete>
+                                        </tags-input>
                                     </div>
                                 </div>
                                 <div class="form-group mi-form">
                                     <div class="col-md-12">
-                                        <textarea ng-model="tab.note.content" class="form-control" rows="3" placeholder="Nội dung tiếp nhận ..."></textarea>
+                                        <textarea ng-model="tab.note.content" required="" class="form-control" rows="3" placeholder="{{'ENTER_NOTE_CONTENT'| translate}}"></textarea>
                                     </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" ng-click="tab.note = {}" ng-disabled="!tab.note.content && !tab.note.tags"  class="btn btn-default btn-sm pull-left">{{'CLEAR'| translate}}</button>
+                                    <button type="submit" ng-if="tab.customer.info.id" ng-disabled="frmCustomerNote.$invalid || !frmCustomerNote.$dirty"  class="btn btn-primary btn-sm">{{'ADD_NOTE'| translate}}</button>
+                                    <button type="button" ng-if="!tab.customer.info.id" ng-disabled="!tab.customer.info.firstName || (!tab.customer.info.mobile && !tab.customer.info.phone)" class="btn btn-primary btn-sm" ng-click="addCusAndNote(tab)">{{ (tab.note.content ? 'SAVE_AND_ADD_NOTE' : 'SAVE') | translate}}</button>
                                 </div>
                             </form>
                         </div>
@@ -90,7 +100,7 @@
                     <div class="widget widget-shadow text-center" style="border: 1px solid #eee;padding: 5px;">
                         <div class="widget-header clearfix" style="padding:22px 15px">
                             <div class="input-group" style="margin-bottom: 10px;">
-                                <input type="text" class="form-control input-sm input-num" ng-model="vm.keypad.number" placeholder="Enter phone number" name="mobile" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                                <input type="text" class="form-control input-sm input-num" ng-model="vm.keypad.number" placeholder="{{'ENTER_PHONE_NUMBER'| translate}}" name="mobile" autocomplete="off" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
                                 <span class="input-group-btn">
                                     <button style="padding: 8px 10px;" type="button" ng-disabled="!vm.keypad.number || vm.keypad.number.length < 3 || vm.keypad.number.length > 12" class="btn btn-sm btn-info" ng-click="vm.keypad.number = ''"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 </span>
@@ -208,71 +218,289 @@
             <hr style="margin: 10px 0px;">
 
             <div class="row">
+                <div class="col-md-12">
 
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-                    <li role="presentation" ng-class="inTabActive == 'note' || !inTabActive ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'note'" aria-controls="home" role="tab" data-toggle="tab">Thông tin tiếp nhận</a></li>
-                    <li role="presentation" ng-class="inTabActive == 'history' ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'history'" aria-controls="history" role="tab" data-toggle="tab">Lịch sử cuộc gọi</a></li>
-                    <li role="presentation" ng-class="inTabActive == 'profile' ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'profile'" aria-controls="profile" role="tab" data-toggle="tab">Thông tin cá nhân</a></li>
-                </ul>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                        <li role="presentation" ng-class="inTabActive === 'note' || (!inTabActive && tab.customer.info.id) ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'note'" aria-controls="home" role="tab" data-toggle="tab">{{'NOTE_HISTORY'| translate}}</a></li>
+                        <li role="presentation" ng-class="inTabActive === 'history' ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'history'" aria-controls="history" role="tab" data-toggle="tab">{{'CALL_HISTORY'| translate}}</a></li>
+                        <li role="presentation" ng-class="inTabActive === 'profile' || (!inTabActive && !tab.customer.info.id) ? 'active' : ''"><a href="javascript:void(0)" ng-click="inTabActive = 'profile'" aria-controls="profile" role="tab" data-toggle="tab">{{'PROFILE'| translate}}</a></li>
+                    </ul>
 
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" ng-class="inTabActive == 'note' || !inTabActive ? 'active' : ''">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" ng-class="inTabActive === 'note' || (!inTabActive && tab.customer.info.id) ? 'active' : ''">
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th> # </th>
-                                            <th> Item </th>
-                                            <th class="hidden-480"> Description </th>
-                                            <th class="hidden-480"> Quantity </th>
-                                            <th class="hidden-480"> Unit Cost </th>
-                                            <th> Total </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td> 1 </td>
-                                            <td> Lorem </td>
-                                            <td class="hidden-480"> Drem psum dolor </td>
-                                            <td class="hidden-480"> 12 </td>
-                                            <td class="hidden-480"> $35 </td>
-                                            <td> $1152 </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <a href="javascript:void(0)" ng-show="!viewFilterNotes.show" ng-click="viewFilterNotes.show = !viewFilterNotes.show">{{'SEARCH'| translate}}</a>
+                                            <div class="form-group clearfix" ng-if="viewFilterNotes.show">
+                                                <div class="col-md-8">
+                                                    <input class="form-control input-sm" ng-model="tab.filterNotes.keyword" placeholder="{{'FILTER_BY_CONTENT'| translate}}" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input class="form-control input-sm" ng-model="tab.filterNotes.tags" placeholder="{{'FILTER_BY_TAG'| translate}}" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item" ng-repeat="note in filteredNotes(tab.filterNotes.keyword, tab.filterNotes.tags, tab.customer.notes)">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a class="avatar avatar-sm {{note.isOnline?'avatar-online':''}}" href="javascript:void(0)">
+                                                        <img class="img-responsive" src="public/images/flat-avatar.png" alt="...">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">{{note.userName}} <small class="pull-right">{{note.created_at|amTimeAgo}}</small></h4>
+                                                    <p>{{note.content}}</p>
+                                                    <p>{{note.note_tags ? 'Tags: #'+note.note_tags : ''}}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item" ng-show="!tab.customer.notes.length">
+                                            <small> Chưa có lịch sử tiếp nhận! </small>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
                             </div>
+
                         </div>
+                        <div role="tabpanel" class="tab-pane" ng-class="inTabActive === 'history' ? 'active' : ''">
+                            Lịch sử cuộc gọi
+                        </div>
+                        <div role="tabpanel" class="tab-pane" ng-class="inTabActive === 'profile' || (!inTabActive && !tab.customer.info.id) ? 'active' : ''" style="padding:0px 15px">
+                            <form name="frmCustomerInfo" method="post" ng-submit="frmCustomerInfo.$valid && updateOrAdd($event, tab)" novalidate>
+                                <div class="row row-lg">
+                                    <div class="col-sm-6 col-md-4 mi-form">
+                                        <h5>{{'FIRSTNAME'| translate}}</h5>
+                                        <input type="text" class="form-control input-sm" data-ng-model="tab.customer.info.firstName" autocomplete="off" placeholder="" name="firstName" />
+                                    </div>
 
+                                    <div class="col-sm-6 col-md-4 mi-form {{frmCustomerInfo.firstName.$touched && frmCustomerInfo.firstName.$invalid ? 'has-error' : ''}}">
+                                        <h5>{{'LASTNAME'| translate}}</h5>
+                                        <input type="text" required="" class="form-control input-sm" data-ng-model="tab.customer.info.lastName" autocomplete="off" placeholder="" name="lastName" />
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 mi-form">
+                                        <h5>{{'GENDER'| translate}}</h5>
+                                        <div style="height: 32px">
+                                            <div class="radio-custom radio-default radio-inline">
+                                                <input type="radio" ng-model="tab.customer.info.gender" id="inputGenderMale" value="male" />
+                                                <label for="inputGenderMale">{{'MALE'| translate}}</label>
+                                            </div>
+                                            <div class="radio-custom radio-default radio-inline">
+                                                <input type="radio" ng-model="tab.customer.info.gender" id="inputGenderFemale" value="female" />
+                                                <label for="inputGenderFemale">{{'FEMALE'| translate}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 mi-form">
+                                        <h5>{{'MOBILE'| translate}}</h5>
+                                        <div class="input-group with-icon">
+                                            <input type="text" class="form-control input-sm" ng-model="tab.customer.info.mobile" autocomplete="off" placeholder="" name="mobile" />
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-disabled="!tab.customer.info.mobile || tab.customer.info.mobile.length < 3 || tab.customer.info.mobile.length > 12" class="btn btn-sm btn-info"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 mi-form">
+                                        <h5>{{'PHONE'| translate}}</h5>
+                                        <div class="input-group with-icon">
+                                            <input type="text" class="form-control input-sm" ng-model="tab.customer.info.phone" autocomplete="off" placeholder="" name="phone" />
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-disabled="!tab.customer.info.phone || tab.customer.info.phone.length < 3 || tab.customer.info.phone.length > 12" class="btn btn-sm btn-info"><i class="fa fa-phone" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4 mi-form">
+                                        <h5>{{'EMAIL'| translate}}</h5>
+                                        <input type="text" class="form-control input-sm" ng-model="tab.customer.info.email" autocomplete="off" placeholder="" name="email" />
+                                    </div>  
+                                    <div class="col-sm-6 col-md-4 mi-form">
+                                        <h5>{{'ADDRESS'| translate}}</h5>
+                                        <input type="text" class="form-control input-sm" ng-model="tab.customer.info.address" autocomplete="off" placeholder="" name="address" />
+                                    </div>
+                                    <div class="col-sm-6 col-md-8 mi-form">
+                                        <h5>{{'NOTE_CUSTOMER'| translate}}</h5>
+                                        <input type="text" class="form-control input-sm" ng-model="tab.customer.info.note" autocomplete="off" placeholder="" name="note" />
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-12 mi-form">
+                                        <a href="#!/index?module=customers" class="btn btn-default btn-sm pull-left">{{'BACK'| translate}}</a>  
+                                        <button type="submit" class="btn btn-primary btn-sm pull-right" ng-disabled="frmCustomerInfo.$invalid || !frmCustomerInfo.$dirty" >{{(tab.customer.info.id ? 'UPDATE' : 'ADD_NEW')|translate}}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" ng-class="inTabActive == 'history' ? 'active' : ''">
-                        Lịch sử cuộc gọi
-                    </div>
-                    <div role="tabpanel" class="tab-pane" ng-class="inTabActive == 'profile' ? 'active' : ''">
-                        Thông tin cá nhân
-                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
-<!--<div>
-    <table style="border: 1px solid #000;width: 300px">
-        <tr>
-            <th><label>Tieu de</label></th>
-            <th><input ng-model="tab.subject" /></th>
-        </tr>
-        <tr>
-            <td colspan="2"><button ng-click="submitDataTab(tab)">Submit {{tab.index}}</button></td>
-        </tr>
-    </table>
-    
-    
-    
-</div>-->
+<style>
 
+    .list-group .media {
+        padding: 2px 0;
+        border-bottom: 0
+    }
+
+    .list-group .media .media-left,.list-group .media .pull-left {
+        padding-right: 20px
+    }
+
+    .list-group .media .media-right,.list-group .media .pull-right {
+        padding-left: 20px
+    }
+
+    .list-group .media .pull-right .status {
+        margin-top: 15px;
+        margin-right: 5px
+    }
+
+    .list-group .media .media-heading {
+        font-size: 14px
+    }
+
+    .list-group-full>.list-group-item {
+        padding-right: 0;
+        padding-left: 0
+    }
+
+    a.list-group-item {
+        border-radius: 3px
+    }
+
+    a.list-group-item.disabled,a.list-group-item.disabled:focus,a.list-group-item.disabled:hover {
+        color: #ccd5db;
+        background-color: #f3f7f9
+    }
+
+    a.list-group-item.active,a.list-group-item.active:focus,a.list-group-item.active:hover {
+        color: #fff;
+        background-color: #62a8ea
+    }
+
+    .list-group-item .icon {
+        margin-right: 10px
+    }
+
+    .list-group.bg-inherit {
+        border-radius: 3px
+    }
+
+    .list-group.bg-inherit .list-group-item {
+        background-color: transparent;
+        border-bottom-color: rgba(0,0,0,.075)
+    }
+
+    .list-group.bg-inherit .list-group-item:last-child {
+        border-bottom-color: transparent
+    }
+
+    .list-group.bg-inherit .list-group-item:hover {
+        background-color: rgba(0,0,0,.075);
+        border-color: transparent
+    }
+
+    .list-group-bordered .list-group-item {
+        border-color: #e4eaec
+    }
+
+    .list-group-bordered .list-group-item.active,.list-group-bordered .list-group-item.active:focus,.list-group-bordered .list-group-item.active:hover {
+        color: #fff;
+        background-color: #4e97d9;
+        border-color: #4e97d9
+    }
+
+    .list-group-dividered .list-group-item {
+        border-top-color: #e4eaec
+    }
+
+    .list-group-dividered .list-group-item.active:hover {
+        border-top-color: #e4eaec
+    }
+
+    .list-group-dividered .list-group-item:last-child {
+        border-bottom-color: #e4eaec
+    }
+
+    .list-group-dividered .list-group-item:first-child {
+        border-top-color: transparent
+    }
+
+    .list-group-dividered .list-group-item:first-child.active:hover {
+        border-top-color: transparent
+    }
+
+    .list-group-gap .list-group-item {
+        margin-bottom: 2px;
+        border-radius: 3px
+    }
+
+    .list-group-full .list-group-item {
+        padding-right: 0;
+        padding-left: 0
+    }
+
+    .list-group-item-dark {
+        color: #fff;
+        background-color: #526069
+    }
+
+    a.list-group-item-dark,button.list-group-item-dark {
+        color: #fff
+    }
+
+    a.list-group-item-dark .list-group-item-heading,button.list-group-item-dark .list-group-item-heading {
+        color: inherit
+    }
+
+    a.list-group-item-dark:focus,a.list-group-item-dark:hover,button.list-group-item-dark:focus,button.list-group-item-dark:hover {
+        color: #fff;
+        background-color: #47535b
+    }
+
+    a.list-group-item-dark.active,a.list-group-item-dark.active:focus,a.list-group-item-dark.active:hover,button.list-group-item-dark.active,button.list-group-item-dark.active:focus,button.list-group-item-dark.active:hover {
+        color: #fff;
+        background-color: #fff;
+        border-color: #fff
+    }
+
+</style>
+<style>
+    .cus-info tags-input:focus{
+        outline: none;
+    }
+    .cus-info .tags, .cus-info .tags.focused{
+        border: none;
+        box-shadow: none;
+        background-color: inherit;
+    }
+    .cus-info .bootstrap-tags-input .autocomplete {
+        border-top: 0px;
+        border-radius: 0px;
+    }
+    .cus-info tags-input .tags .input {
+        background: inherit;
+    }
+    tags-input .tags .tag-item{
+        background: #70b773;
+        border: 1px solid #eee;
+        color: #fff;
+        font-size: 12px;
+    }
+    tags-input .autocomplete .suggestion-item{
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+    .input-group.with-icon .input-group-btn .btn {
+        padding: 8px;
+    }
+</style>

@@ -6,65 +6,240 @@
                     <div class="panel-control pull-right"> <a class="panelButton"><i class="fa fa-refresh"></i></a> <a class="panelButton"><i class="fa fa-minus"></i></a> <a class="panelButton"><i class="fa fa-remove"></i></a> </div>
                 </h3>
             </div>
-            <div class="panel-body">
-                <p>
-                    <a tooltips tooltip-side="bottom" tooltip-template="{{ 'ADD' | translate }}" href="javascript:void(0)" ng-click="showTabCustomer('new', 0, 'info')" class="btn btn-default"><i class="fa fa-plus"></i></a> 
-                    <button tooltips tooltip-side="bottom" tooltip-template="{{ 'IMPORT' | translate }}" type="button" class="btn btn-info"><i class="fa fa-upload"></i></button> 
-                    <button tooltips tooltip-side="bottom" tooltip-template="{{ 'EXPORT' | translate }}" type="button" class="btn btn-warning"><i class="fa fa-download"></i></button> 
-                    <button tooltips tooltip-side="bottom" tooltip-template="{{ 'DELETE_SELECT' | translate }}" type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    
-                    <label class="label label-success">{{ 'SELECTED' | translate }} ( {{cus.listCheckCus.length || 0}} )</label>
-                </p>
-                <hr/>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                <label class="checkbox1" for="ipCusListCheckAll"> 
-                                    <input id="ipCusListCheckAll" ng-value="true" ng-model="cus.checkAllList" ng-click="cus.checkAllCus($event)" type="checkbox" /> 
-                                    <span></span> 
-                                </label>
-                            </th>
-                            <th class="col-md-2">{{ 'CUSTOMER_CODE' | translate }}</th>
-                            <th class="col-md-3">{{ 'CUSTOMER_NAME' | translate }}</th>
-                            <th class="col-md-2">{{ 'MOBILE' | translate }}</th>
-                            <th class="col-md-2">{{ 'PHONE' | translate }}</th>
-                            <th class="col-md-2">{{ 'EMAIL' | translate }}</th>
-                            <th class="col-md-1"></th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th></th>
-                            <th class="col-md-2">{{ 'CUSTOMER_CODE' | translate }}</th>
-                            <th class="col-md-3">{{ 'CUSTOMER_NAME' | translate }}</th>
-                            <th class="col-md-2">{{ 'MOBILE' | translate }}</th>
-                            <th class="col-md-2">{{ 'PHONE' | translate }}</th>
-                            <th class="col-md-2">{{ 'EMAIL' | translate }}</th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr ng-repeat="customer in cus.dataCustomers" ng-mouseenter="viewIcon = true" ng-mouseleave="viewIcon = false" ng-init="viewIcon = false">
-                            <td>
-                                <label class="checkbox1" for="ipCusListCheck{{customer.id}}"> 
-                                    <input ng-checked="cus.checkAllList" ng-click="cus.checkCus($event, customer.id)" id="ipCusListCheck{{customer.id}}" type="checkbox" /> 
-                                    <span></span>
-                                </label>
-                            </td>
-                            <td>{{customer.customerCode}}</td>
-                            <td>{{customer.lastName + ' ' + customer.firstName}}</td>
-                            <td>{{customer.mobile}} <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-show="customer.mobile && viewIcon"><i class="fa fa-phone" aria-hidden="true"></i></button></td>
-                            <td>{{customer.phone}} <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-show="customer.phone && viewIcon"><i class="fa fa-phone" aria-hidden="true"></i></button></td>
-                            <td>{{customer.email}}</td>
-                            <td>
-                                <a class="btn btn-floating btn-success btn-xs" tooltips tooltip-template="{{ 'EDIT' | translate }}" href="javascript:void(0)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                <button tooltips tooltip-template="{{ 'DELETE' | translate }}" type="button" class="btn btn-floating btn-danger btn-xs"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="panel-body form-input-sm">
+                <form id="frmSearchMore" name="frmSearchMore" method="post">
+                    <div class="row cursearch">
+                        <div class="col-sm-6 col-md-4 margin-bottom-0">
+                            <a ng-disabled="!cus.listCheckCus.length" tooltips tooltip-side="bottom" tooltip-template="{{ 'ADD' | translate }}" href="javascript:void(0)" ng-click="showTabCustomer('new', 0, 'info')" class="btn btn-default"><i class="fa fa-plus"></i></a> 
+                            <button tooltips tooltip-side="bottom" tooltip-template="{{ 'IMPORT' | translate }}" type="button" class="btn btn-info"><i class="fa fa-upload"></i></button> 
+                            <button tooltips tooltip-side="bottom" tooltip-template="{{ 'EXPORT' | translate }}" type="button" class="btn btn-warning"><i class="fa fa-download"></i></button> 
+                            <button ng-disabled="!cus.listCheckCus.length" type="button" class="btn btn-danger" ng-click="cus.deleteMultiCustomer()"><i class="fa fa-trash-o" tooltips tooltip-side="bottom" tooltip-template="{{ 'DELETE_SELECT' | translate }}"></i></button>
+                            <label class="label label-success">{{ 'SELECTED' | translate }} ( {{cus.listCheckCus.length|| 0}} )</label>
+                        </div>
+                        <div class="col-sm-6 col-md-5 margin-bottom-0">
+                            <input ng-if="!cus.showSearchAdvanced" type="text" class="form-control input-sm" ng-model="cus.filter.keyword" placeholder="{{ 'ENTER_KEYWORD' | translate }}">
+                        </div>
+                        <div class="col-sm-6 col-md-3 margin-bottom-0">
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="cus.getCustomers()">{{ 'SEARCH' | translate }}</a> 
+                            <a ng-if="cus.showSearchAdvanced" class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="cus.filter={}">{{ 'CLEAR' | translate }}</a> 
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="cus.showSearchAdvanced=!cus.showSearchAdvanced; cus.filter.keyword=''">{{ (!cus.showSearchAdvanced ? 'ADVANCED' : 'HIDE_ADVANCED') | translate }}</a>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="cus.showSearchAdvanced" style="margin:10px 0px;border:1px solid #d0d0d0;background:#f5f5f5;">
+                        <div class="col-md-6">
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-sm-6 col-md-3 mi-form">
+                                    <label>{{ 'CUSTOMER_CODE' | translate }}</label>
+                                </div>
+                                <div class="col-sm-6 col-md-4 mi-form">
+                                    <select class="form-control input-sm" ng-model="cus.filter.advanced['customerCode'].type" ng-init="cus.filter.advanced['customerCode'].type='like'">
+                                        <option value="like">{{ 'LIKE' | translate }}</option>
+                                        <option value="like_left">{{ 'LIKE_LEFT' | translate }}</option>
+                                        <option value="like_right">{{ 'LIKE_RIGHT' | translate }}</option>
+                                        <option value="not_like">{{ 'NOT_LIKE' | translate }}</option>
+                                        <option value="not_like_left">{{ 'NOT_LIKE_LEFT' | translate }}</option>
+                                        <option value="not_like_right">{{ 'NOT_LIKE_RIGHT' | translate }}</option>
+                                        <option value="equal">=</option>
+                                        <option value="more">&gt;</option>
+                                        <option value="less">&lt;</option>
+                                        <option value="other">&lt;&gt;</option>
+                                        <option value="more_equal">&gt;=</option>
+                                        <option value="more_less">&lt;=</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 col-md-5 mi-form">
+                                    <input type="text" class="form-control input-sm" ng-model="cus.filter.advanced['customerCode'].content" tooltips tooltip-side="top" tooltip-template="{{ 'ENTER_KEYWORD' | translate }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-3 mi-form">
+                                    <label>{{ 'CUSTOMER_NAME' | translate }}</label>
+                                </div>
+                                <div class="col-sm-6 col-md-4 mi-form">
+                                    <select class="form-control input-sm" ng-model="cus.filter.advanced['fullname'].type" ng-init="cus.filter.advanced['fullname'].type='like'">
+                                        <option value="like">{{ 'LIKE' | translate }}</option>
+                                        <option value="like_left">{{ 'LIKE_LEFT' | translate }}</option>
+                                        <option value="like_right">{{ 'LIKE_RIGHT' | translate }}</option>
+                                        <option value="not_like">{{ 'NOT_LIKE' | translate }}</option>
+                                        <option value="not_like_left">{{ 'NOT_LIKE_LEFT' | translate }}</option>
+                                        <option value="not_like_right">{{ 'NOT_LIKE_RIGHT' | translate }}</option>
+                                        <option value="equal">=</option>
+                                        <option value="more">&gt;</option>
+                                        <option value="less">&lt;</option>
+                                        <option value="other">&lt;&gt;</option>
+                                        <option value="more_equal">&gt;=</option>
+                                        <option value="more_less">&lt;=</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 col-md-5 mi-form">
+                                    <input type="text" class="form-control input-sm" ng-model="cus.filter.advanced['fullname'].content" tooltips tooltip-side="top" tooltip-template="{{ 'ENTER_KEYWORD' | translate }}">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6" style="border-left: 1px solid #d0d0d0;">
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-sm-6 col-md-3 mi-form">
+                                    <label>{{ 'MOBILE' | translate }}</label>
+                                </div>
+                                <div class="col-sm-6 col-md-4 mi-form">
+                                    <select class="form-control input-sm" ng-model="cus.filter.advanced['mobile'].type" ng-init="cus.filter.advanced['mobile'].type='like'">
+                                        <option value="like">{{ 'LIKE' | translate }}</option>
+                                        <option value="like_left">{{ 'LIKE_LEFT' | translate }}</option>
+                                        <option value="like_right">{{ 'LIKE_RIGHT' | translate }}</option>
+                                        <option value="not_like">{{ 'NOT_LIKE' | translate }}</option>
+                                        <option value="not_like_left">{{ 'NOT_LIKE_LEFT' | translate }}</option>
+                                        <option value="not_like_right">{{ 'NOT_LIKE_RIGHT' | translate }}</option>
+                                        <option value="equal">=</option>
+                                        <option value="more">&gt;</option>
+                                        <option value="less">&lt;</option>
+                                        <option value="other">&lt;&gt;</option>
+                                        <option value="more_equal">&gt;=</option>
+                                        <option value="more_less">&lt;=</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 col-md-5 mi-form">
+                                    <input type="text" class="form-control input-sm" ng-model="cus.filter.advanced['mobile'].content" tooltips tooltip-side="top" tooltip-template="{{ 'ENTER_KEYWORD' | translate }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-3 mi-form">
+                                    <label>{{ 'PHONE' | translate }}</label>
+                                </div>
+                                <div class="col-sm-6 col-md-4 mi-form">
+                                    <select class="form-control input-sm" ng-model="cus.filter.advanced['phone'].type" ng-init="cus.filter.advanced['phone'].type='like'">
+                                        <option value="like">{{ 'LIKE' | translate }}</option>
+                                        <option value="like_left">{{ 'LIKE_LEFT' | translate }}</option>
+                                        <option value="like_right">{{ 'LIKE_RIGHT' | translate }}</option>
+                                        <option value="not_like">{{ 'NOT_LIKE' | translate }}</option>
+                                        <option value="not_like_left">{{ 'NOT_LIKE_LEFT' | translate }}</option>
+                                        <option value="not_like_right">{{ 'NOT_LIKE_RIGHT' | translate }}</option>
+                                        <option value="equal">=</option>
+                                        <option value="more">&gt;</option>
+                                        <option value="less">&lt;</option>
+                                        <option value="other">&lt;&gt;</option>
+                                        <option value="more_equal">&gt;=</option>
+                                        <option value="more_less">&lt;=</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 col-md-5 mi-form">
+                                    <input type="text" class="form-control input-sm" ng-model="cus.filter.advanced['phone'].content" tooltips tooltip-side="top" tooltip-template="{{ 'ENTER_KEYWORD' | translate }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <hr style="margin: 5px 0px"/>
+                <div >
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="checkbox1" for="ipCusListCheckAll"> 
+                                        <input id="ipCusListCheckAll" value="true" ng-model="cus.checkAllList" ng-click="cus.checkAllCus($event)" type="checkbox" /> 
+                                        <span></span> 
+                                    </label>
+                                </th>
+                                <th class="col-md-2 sort-icon" ng-click="cus.sort('customerCode')">
+                                    {{ 'CUSTOMER_CODE' | translate }}
+                                    <span class="fa" ng-show="cus.sortKey == 'customerCode'" ng-class="{'fa-sort-asc':cus.reverse,'fa-sort-desc':!cus.reverse}"></span>
+                                </th>
+                                <th class="col-md-3 sort-icon" ng-click="cus.sort('firstName')">
+                                    {{ 'CUSTOMER_NAME' | translate }}
+                                    <span class="fa" ng-show="cus.sortKey == 'firstName'" ng-class="{'fa-sort-asc':cus.reverse,'fa-sort-desc':!cus.reverse}"></span>
+                                </th>
+                                <th class="col-md-2 sort-icon" ng-click="cus.sort('mobile')">
+                                    {{ 'MOBILE' | translate }}
+                                    <span class="fa" ng-show="cus.sortKey == 'mobile'" ng-class="{'fa-sort-asc':cus.reverse,'fa-sort-desc':!cus.reverse}"></span>
+                                </th>
+                                <th class="col-md-2 sort-icon" ng-click="cus.sort('phone')">
+                                    {{ 'PHONE' | translate }}
+                                    <span class="fa" ng-show="cus.sortKey == 'phone'" ng-class="{'fa-sort-asc':cus.reverse,'fa-sort-desc':!cus.reverse}"></span>
+                                </th>
+                                <th class="col-md-2 sort-icon" ng-click="cus.sort('email')">
+                                    {{ 'EMAIL' | translate }}
+                                    <span class="fa" ng-show="cus.sortKey == 'email'" ng-class="{'fa-sort-asc':cus.reverse,'fa-sort-desc':!cus.reverse}"></span>
+                                </th>
+                                <th class="col-md-1"></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th class="col-md-2">{{ 'CUSTOMER_CODE' | translate }}</th>
+                                <th class="col-md-3">{{ 'CUSTOMER_NAME' | translate }}</th>
+                                <th class="col-md-2">{{ 'MOBILE' | translate }}</th>
+                                <th class="col-md-2">{{ 'PHONE' | translate }}</th>
+                                <th class="col-md-2">{{ 'EMAIL' | translate }}</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr ng-repeat="customer in cus.listData.data" ng-mouseenter="viewIcon = true" ng-mouseleave="viewIcon = false" ng-init="viewIcon = false">
+                                <!--<tr dir-paginate="customer in cus.dataCustomers |itemsPerPage:cus.itemsPerPage" total-items="cus.total_count" ng-mouseenter="viewIcon = true" ng-mouseleave="viewIcon = false" ng-init="viewIcon = false">-->
+                                <!--<tr dir-paginate="customer in cus.dataCustomers|orderBy:cus.sortKey:cus.reverse|filter:cus.keyword | itemsPerPage: cus.pageSize" current-page="cus.currentPage" ng-mouseenter="viewIcon = true" ng-mouseleave="viewIcon = false" ng-init="viewIcon = false">-->
+                                <td>
+                                    <label class="checkbox1" for="ipCusListCheck{{customer.id}}"> 
+                                        <input ng-checked="cus.checkAllList" ng-click="cus.checkCus($event, customer.id)" id="ipCusListCheck{{customer.id}}" type="checkbox" /> 
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td>{{customer.customerCode}}</td>
+                                <td>{{customer.lastName + ' ' + customer.firstName}}</td>
+                                <td>{{customer.mobile}} <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-show="customer.mobile && viewIcon"><i class="fa fa-phone" aria-hidden="true"></i></button></td>
+                                <td>{{customer.phone}} <button tooltips tooltip-template="{{ 'CALL_THIS_NUMBER' | translate }}" type="button" class="btn btn-xs btn-info btn-round" ng-show="customer.phone && viewIcon"><i class="fa fa-phone" aria-hidden="true"></i></button></td>
+                                <td>{{customer.email}}</td>
+                                <td>
+                                    <a class="btn btn-floating btn-success btn-xs" tooltips tooltip-template="{{ 'EDIT' | translate }}" href="javascript:void(0)" ng-click="showTabCustomer('new', customer.id, 'info', customer)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <button tooltips tooltip-template="{{ 'DELETE' | translate }}" type="button" class="btn btn-floating btn-danger btn-xs" ng-click="cus.deleteCus(customer.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" >
+                    <div class="table-footer">
+                        <div class="col-md-2">
+                            <select class="form-control input-sm" ng-model="cus.listData.per_page" ng-change="cus.getCustomers(1, cus.listData.per_page)">
+                                <option ng-value="5">05</option>
+                                <option ng-value="10">10</option>
+                                <option ng-value="15">15</option>
+                                <option ng-value="20">20</option>
+                                <option ng-value="40">40</option>
+                                <option ng-value="60">60</option>
+                                <option ng-value="80">80</option>
+                                <option ng-value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="col-md-10">
+                            <ul class="pagination pagination-sm" style="margin:0px;float:right">
+                                <li ng-class="{disabled:cus.listData.current_page === 1}"><a href="javascript:void(0)" ng-click="cus.getCustomers(1)">Đầu</a></li>
+                                <li ng-class="{disabled:cus.listData.current_page === 1}"><a href="javascript:void(0)" ng-click="cus.getCustomers(cus.pager.current_page - 1)"> Trước</a></li>
+                                <li class="hidden-mobile"> <a href="javascript:void(0)" class="" onclick="return false;">[ Hiển thị {{cus.listData.from}} - {{cus.listData.to}} trong {{cus.listData.total}} ] </a></li>
+                                <li ng-class="{disabled:cus.listData.current_page === cus.listData.last_page}"><a href="javascript:void(0)" ng-click="cus.getCustomers(cus.listData.current_page + 1)">Sau</a> </li>
+                                <li ng-class="{disabled:cus.listData.current_page === cus.listData.last_page}"><a href="javascript:void(0)" ng-click="cus.getCustomers(cus.listData.total)">Cuối</a></li>
+<!--                                <li class="active hidden-mobile" style="margin-left:10px;">
+                                    <button class="btn btn-sm btn-primary" onclick="">Show All</button>
+                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .sort-icon:hover{
+        cursor: pointer;
+    }
+    .sort-icon .fa{
+        float: right;
+        color: #adadad;
+    }
+    .ng-confirm-box{
+        margin-top: 35%!important;
+    }
+</style>
